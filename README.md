@@ -1,5 +1,6 @@
 # Face Recognition and Object Detection in Unity Cg
-SVM using HOG descriptors implemented in fragment shaders for VRChat
+
+Code not 100% complete, WIP
 
 OpenCV Setup
 C/C++ -> General Additional Include Directories
