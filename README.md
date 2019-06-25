@@ -2,15 +2,11 @@
 SVM using HOG descriptors implemented in fragment shaders for VRChat
 
 OpenCV Setup
-
-VC++ Directories
-D:\OpenCV 4.0.1\opencv\build\include;$(IncludePath)
-
 C/C++ -> General Additional Include Directories
 D:\OpenCV 4.0.1\opencv\build\include
 
 Linker -> General -> Additional Library Directories
-$(OPENCV_DIR)\lib;%(AdditionalLibraryDirectories)
+$(OPENCV_DIR)\lib
 
 Linker -> Input -> Additional Dependencies
 opencv_world401d.lib;%(AdditionalDependencies)
