@@ -1,4 +1,4 @@
-﻿Shader "SVMFaceDetection/output"
+﻿Shader "FaceAndObjectDetect/output"
 {
     Properties
     {
@@ -63,8 +63,10 @@
                 size.y = size.y / _TexCam_TexelSize.w * _TexCam_TexelSize.z;
                 // The edges of the classified output has a lot of false 
                 // positives
-                for (uint x = 1; x < (uint)(_TexClass_TexelSize.z - 1); x++) {
-                    for (uint y = 1; y < (uint)(_TexClass_TexelSize.w - 1); y++) {
+                [unroll(24)]
+                for (uint x = 0; x < (uint)(_TexClass_TexelSize.z); x++) {
+                    [unroll(6)]
+                    for (uint y = 0; y < (uint)(_TexClass_TexelSize.w); y++) {
                         bool isFace = _TexClass.Load(uint3(x, y, 0)).r > 0.5 ? true : false;
                         float2 muv = float2(x, y) / _TexClass_TexelSize.zw;
                         float2 dist = ps.uv - muv;

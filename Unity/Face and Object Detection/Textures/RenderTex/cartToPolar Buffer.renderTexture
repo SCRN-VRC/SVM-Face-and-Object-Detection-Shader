@@ -14,7 +14,7 @@ RenderTexture:
   m_Width: 160
   m_Height: 90
   m_AntiAliasing: 1
-  m_DepthFormat: 2
+  m_DepthFormat: 0
   m_ColorFormat: 11
   m_MipMap: 0
   m_GenerateMips: 1

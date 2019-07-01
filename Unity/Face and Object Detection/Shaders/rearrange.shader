@@ -1,7 +1,8 @@
-﻿Shader "SVMFaceDetection/rearrange"
+﻿Shader "FaceAndObjectDetect/rearrange"
 {
     Properties
     {
+        _TexOut ("testData", 2D) = "black" {}
         _TexHOGs ("HOG Features", 2D) = "black" {}
         _Dst ("Distance Clip", Float) = 0.05
     }
@@ -26,9 +27,11 @@
 
             #include "UnityCG.cginc"
 
-            #define outRes float2(1568., 144.)
+            #define outRes _TexOut_TexelSize.zw
 
+            Texture2D<float4> _TexOut;
             Texture2D<float4> _TexHOGs;
+            float4 _TexOut_TexelSize;
             float _Dst;
 
             struct appdata
@@ -58,7 +61,21 @@
 
             inline uint is_odd(uint x) { return x & 0x1; }
 
-            // Stretch out the 14x14x8 render texture into 1568x1
+            /*
+                Merlin told me to put this on its own render texture
+                to reduce the number conditional moves when unpacking 
+                the float16. It works wonders.
+
+                This stretches out the 14x14x8 render texture into 1568x1
+
+                In:
+                    px = Current pixel, we use it to determine one pixel of
+                        one of the 14x14 block to grab
+                    offset = Offset over to the correct 14x14 block
+                Out:
+                    The float from mapping 14x14x8 into 1568x1
+            */
+
             float flatten(uint2 px, uint2 offset) {
                 uint4 buffer;
                 buffer.x = px.x % 14;

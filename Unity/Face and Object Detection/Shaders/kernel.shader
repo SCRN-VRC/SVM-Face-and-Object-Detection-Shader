@@ -1,4 +1,4 @@
-﻿Shader "SVMFaceDetection/kernel"
+﻿Shader "FaceAndObjectDetect/kernel"
 {
     Properties
     {
@@ -29,13 +29,14 @@
 
             #include "UnityCG.cginc"
 
-            #define outRes float2(237., 144.)
+            #define outRes _TexBuffer_TexelSize.zw
 
             Texture2D<float4> _TexData;
             Texture2D<float4> _TexSV;
             Texture2D<float4> _TexAlphaInds;
             Texture2D<float4> _TexBuffer;
             float4 _TexSV_TexelSize;
+            float4 _TexBuffer_TexelSize;
             float _Dst;
             float gamma;
 
@@ -67,6 +68,18 @@
                 return o;
             }
 
+            /*
+                Radial basis function kernel
+                K(x, x') = exp(-gamma * ||x - x'||^2)
+
+                In:
+                    px.x = Support vector index from the decision plane
+                    px.y = Index of the features extracted from each 64x64 image
+
+                Out:
+                    K(x, x')
+            */
+
             float kernel(uint2 px) {
                 const uint MAX = round(_TexSV_TexelSize.z);
 
@@ -88,12 +101,12 @@
                 float4 col = _TexBuffer.Load(uint3(px, 0));
                 if (col.g > 0.0) {
                     // Update rate, lower frame slower updates
-                    col.g -= unity_DeltaTime.w * 0.003;
+                    col.g -= unity_DeltaTime.w * 0.0025;
                 }
                 else {
                     col.r = kernel(px);
                     //Wavey pattern
-                    col.g = 1.0 + 0.5*sin(ps.uv.y * 3.14);
+                    col.g = 1.0 + 0.5*sin(ps.uv.y * -UNITY_PI);
                 }
 
                 return col;

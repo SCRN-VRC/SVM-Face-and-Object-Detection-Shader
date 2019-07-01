@@ -49,6 +49,10 @@ void svmtrain(float *features, vector< int > & labels, bool train_auto,
 	float C, float gamma, int var_iters, int max_size, String name) {
 
 	int *lbl = (int *)malloc(sizeof(int) * labels.size());
+	if (!lbl) {
+		clog << "No memory" << endl;
+		exit(1);
+	}
 	for (int i = 0; i < labels.size(); i++) lbl[i] = labels[i];
 
 	Mat trainingMat(min(max_size, labels.size()), 1568, CV_32F, features);
@@ -79,6 +83,10 @@ void svmtrain(float *features, vector< int > & labels, bool train_auto,
 
 int* myPredict(Ptr<SVM> & svm, float* testArray, int n) {
 	int* labels = (int*)malloc(sizeof(int) * n);
+	if (!labels) {
+		clog << "No memory" << endl;
+		exit(1);
+	}
 	Mat sv = svm->getSupportVectors();
 	//Ptr<Kernel> kernel = svm->getKernel();
 	//Mat buffer(1, sv.rows, CV_32F);
@@ -138,20 +146,22 @@ void getHistArray(vector< Mat > & img_lst, float* features) {
 		{
 			for (int j = 0; j < image.cols; j++)
 			{
-				Vec3b color = image.at<Vec3b>(Point(j, i));
-				float lin_r = (color[0] / 255.0);
+				Vec3b color = image.at<Vec3b>(Point(i, j));
+				float lin_r = (color[2] / 255.0);
 				float lin_g = (color[1] / 255.0);
-				float lin_b = (color[2] / 255.0);
-				imgLuma.at<float>(i, j) = 0.2126*lin_r + 0.7152*lin_g + 0.0722*lin_b;
+				float lin_b = (color[0] / 255.0);
+				imgLuma.at<float>(Point(i, j)) = 0.2126*lin_r + 0.7152*lin_g + 0.0722*lin_b;
+				//imgLuma.at<float>(i, j) = 0.3333*lin_r + 0.3334*lin_g + 0.3333*lin_b;
 			}
 		}
+
 		// Manually calculating derivs
 		Mat gx = Mat::zeros(imgLuma.rows, imgLuma.cols, CV_32F);
 		Mat gy = Mat::zeros(imgLuma.rows, imgLuma.cols, CV_32F);
 		Mat mag = Mat::zeros(imgLuma.rows, imgLuma.cols, CV_32F);
 		Mat dir = Mat::zeros(imgLuma.rows, imgLuma.cols, CV_32F);
 
-		for (int i = 0; i < imgLuma.rows; i++)
+		for (int i = imgLuma.rows - 1; i >= 0; i--)
 		{
 			for (int j = 0; j < imgLuma.cols; j++)
 			{
@@ -446,8 +456,8 @@ int main(int argc, char** argv)
 		"{help h|     | show help message}"
 		"{d     |     | directory containing images in folders separated by class}"
 		"{auto  |false| train automatically to find optimal C and gamma values (OpenCV crashes a lot with this)}"
-		"{c     |50   | sets C, a lower C will encourage a larger margin, therefore a simpler decision function, at the cost of training accuracy}"
-		"{g     |0.05 | sets gamma, influence of single training sample with low values meaning 'far' and high values meaning 'close'}"
+		"{c     |2.5  | sets C, a lower C will encourage a larger margin, therefore a simpler decision function, at the cost of training accuracy}"
+		"{g     |0.50625| sets gamma, influence of single training sample with low values meaning 'far' and high values meaning 'close'}"
 		"{test t|false| test a trained detector}"
 		"{fn    |out.yaml  | file name of trained SVM}"
 		"{i     |100  | training iterations}"
@@ -462,15 +472,16 @@ int main(int argc, char** argv)
 	//Vec3b green(0, 255, 0), blue(255, 0, 0);
 	//for (int i = image.rows - 1; i >= 0; i--)
 	//{
+	//	int ii = image.rows - i - 1;
 	//	for (int j = 0; j < image.cols; j++)
 	//	{
-	//		image.at<Vec3b>(i, j) = Vec3b(image.rows - i - 1, j, 0);
+	//		image.at<Vec3b>(i, j) = Vec3b(ii, j, 0);
 	//	}
 	//}
-
-	imshow("SVM Simple Example", image);
-	waitKey();
-	return 0;
+	//
+	//imshow("SVM Simple Example", image);
+	//waitKey();
+	//return 0;
 
 	CommandLineParser parser(argc, argv, keys);
 	if (parser.has("help"))
@@ -536,6 +547,10 @@ int main(int argc, char** argv)
 	}
 
 	features = (float*)malloc(sizeof(float) * 1568 * img_lst.size());
+	if (!features) {
+		clog << "No memory" << endl;
+		exit(1);
+	}
 	clog << "Extracting features...";
 	getHistArray(img_lst, features);
 	clog << "...[done]\n";

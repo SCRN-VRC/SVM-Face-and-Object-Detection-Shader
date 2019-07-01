@@ -1,15 +1,8 @@
-﻿/*
-    normFactor.shader
-    16x16 Block Normalization 
-    https://www.learnopencv.com/histogram-of-oriented-gradients/
-
-    Smooths intense lighting situations.
-*/
-
-Shader "SVMFaceDetection/normFactor"
+﻿Shader "FaceAndObjectDetect/normFactor"
 {
     Properties
     {
+        _TexOut ("normFactor", 2D) = "black" {}
         _TexBins ("Binning Output", 2D) = "black" {}
         _Dst ("Distance Clip", Float) = 0.05
     }
@@ -34,11 +27,12 @@ Shader "SVMFaceDetection/normFactor"
 
             #include "UnityCG.cginc"
 
-            #define outRes float2(168., 42.)
-
+            #define outRes _TexOut_TexelSize.zw
             //RWStructuredBuffer<float4> buffer : register(u1);
 
+            Texture2D<float4> _TexOut;
             Texture2D<float4> _TexBins;
+            float4 _TexOut_TexelSize;
             float _Dst;
 
             struct appdata
@@ -65,8 +59,9 @@ Shader "SVMFaceDetection/normFactor"
                     mul(unity_ObjectToWorld, fixed4(0,0,0,1)).xyz) > _Dst) ? -1 : 1;
                 return o;
             }
-
+            
             /*
+                16x16 Block Normalization 
                 Takes the top left, top right, bottom left, bottom right 
                 pixels and adds the data it contains all together.
 

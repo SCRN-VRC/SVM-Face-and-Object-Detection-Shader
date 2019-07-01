@@ -1,4 +1,4 @@
-﻿Shader "SVMFaceDetection/buffer"
+﻿Shader "FaceAndObjectDetect/buffer"
 {
     Properties
     {

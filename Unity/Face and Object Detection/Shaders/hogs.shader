@@ -1,7 +1,8 @@
-﻿Shader "SVMFaceDetection/hogs"
+Shader "FaceAndObjectDetect/hogs"
 {
     Properties
     {
+        _TexOut ("hogs", 2D) = "black" {}
         _TexBins ("Binning Output", 2D) = "black" {}
         _TexNormFactor ("Normalization Factor", 2D) = "black" {}
         _Dst ("Distance Clip", Float) = 0.05
@@ -27,10 +28,12 @@
 
             #include "UnityCG.cginc"
 
-            #define outRes float2(336., 84.)
+            #define outRes _TexOut_TexelSize.zw
 
+            Texture2D<float4> _TexOut;
             Texture2D<float4> _TexBins;
             Texture2D<float4> _TexNormFactor;
+            float4 _TexOut_TexelSize;
             float _Dst;
 
             //RWStructuredBuffer<float4> buffer : register(u1);
@@ -99,7 +102,7 @@
             {
                 clip(ps.uv.z);
                 uint2 px = round(ps.uv.xy * outRes);
-                float4 col = hogs(px % 14,floor(px / 14) * 7);
+                float4 col = hogs(px % 14, floor(px / 14) * 7);
                 return col;
             }
             ENDCG

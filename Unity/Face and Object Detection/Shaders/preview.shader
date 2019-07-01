@@ -1,4 +1,4 @@
-﻿Shader "SVMFaceDetection/preview"
+﻿Shader "FaceAndObjectDetect/preview"
 {
     Properties
     {

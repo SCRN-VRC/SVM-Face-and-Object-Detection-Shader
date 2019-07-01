@@ -1,18 +1,11 @@
-﻿/*
-    cartToPolar.shader
-    This layer calculates the gradients based on the luminance stored 
-    in the red channel. Then it uses the gradients to calc and store the 
-    magnitude and direction (0 to 180 degrees) inside the green and blue 
-    channels.
-*/
-
-Shader "SVMFaceDetection/cartToPolar"
+﻿Shader "FaceAndObjectDetect/cartToPolar"
 {
 
     Properties
     {
-        _CamTex1 ("L1 Camera", 2D) = "black" {}
-        _Buffer ("cartToPolar Buffer", 2D) = "black" {}
+        _TexOut ("cartToPolar", 2D) = "black" {}
+        _TexCam ("L1 Camera", 2D) = "black" {}
+        _TexBuff ("cartToPolar Buffer", 2D) = "black" {}
         _Dst ("Distance Clip", Float) = 0.05
     }
 
@@ -37,12 +30,13 @@ Shader "SVMFaceDetection/cartToPolar"
 
             #include "UnityCG.cginc"
 
-            #define outRes float2(160., 90.)
-
+            #define outRes _TexOut_TexelSize.zw
             //RWStructuredBuffer<float4> buffer : register(u1);
 
-            Texture2D<float4> _CamTex1;
-            Texture2D<float4> _Buffer;
+            Texture2D<float4> _TexOut;
+            Texture2D<float4> _TexCam;
+            Texture2D<float4> _TexBuff;
+            float4 _TexOut_TexelSize;
             float _Dst;
 
             static const float3x3 fX = {
@@ -83,8 +77,10 @@ Shader "SVMFaceDetection/cartToPolar"
             }
             
             /*
-                cartToPolar is a function that computes the 
-                magnitude and angle of 2D vectors.
+                This layer calculates the gradients based on the B/W conversion 
+                stored in the red channel. Then it uses the gradients to calc 
+                and store the magnitude and direction (0 to 180 degrees) 
+                inside the green and blue channels.
 
                 In:
                     px - center sample pixel
@@ -101,17 +97,17 @@ Shader "SVMFaceDetection/cartToPolar"
                                 clamp(px.y - 1, yrange.x, yrange.y),  //yL
                                 clamp(px.y + 1, yrange.x, yrange.y)); //yH
 
-                float3 _0 = float3(_Buffer.Load(uint3(off.x, off.z, 0.)).r,
-                                   _Buffer.Load(uint3(off.x, px.y, 0.)).r,
-                                   _Buffer.Load(uint3(off.x, off.w, 0.)).r);
+                float3 _0 = float3(_TexBuff.Load(uint3(off.x, off.z, 0.)).r,
+                                   _TexBuff.Load(uint3(off.x, px.y, 0.)).r,
+                                   _TexBuff.Load(uint3(off.x, off.w, 0.)).r);
 
-                float3 _1 = float3(_Buffer.Load(uint3(px.x, off.z, 0.)).r,
-                                   _Buffer.Load(uint3(px.x, px.y, 0.)).r,
-                                   _Buffer.Load(uint3(px.x, off.w, 0.)).r);
+                float3 _1 = float3(_TexBuff.Load(uint3(px.x, off.z, 0.)).r,
+                                   _TexBuff.Load(uint3(px.x, px.y, 0.)).r,
+                                   _TexBuff.Load(uint3(px.x, off.w, 0.)).r);
 
-                float3 _2 = float3(_Buffer.Load(uint3(off.y, off.z, 0.)).r,
-                                   _Buffer.Load(uint3(off.y, px.y, 0.)).r,
-                                   _Buffer.Load(uint3(off.y, off.w, 0.)).r);
+                float3 _2 = float3(_TexBuff.Load(uint3(off.y, off.z, 0.)).r,
+                                   _TexBuff.Load(uint3(off.y, px.y, 0.)).r,
+                                   _TexBuff.Load(uint3(off.y, off.w, 0.)).r);
 
                 float4 g;
                 g.x = _0.x * fX[0][0] + _0.y * fX[0][1] + _0.z * fX[0][2] +
@@ -141,8 +137,8 @@ Shader "SVMFaceDetection/cartToPolar"
                 uint2 px = round(ps.uv.xy * outRes);
                 
                 float3 col = float3(0.,0.,0.);
-                float3 camTex = _CamTex1.Load(uint3(px, 0));
-                // Relative luminance
+                float3 camTex = _TexCam.Load(uint3(px, 0));
+                //col.r = 0.3333*camTex.r + 0.3334*camTex.g + 0.3333*camTex.b;
                 col.r = 0.2126*camTex.r + 0.7152*camTex.g + 0.0722*camTex.b;
                 col.gb = cartToPolar(px, uint2(0, 160), uint2(0, 90));
                 return float4(col, 1.0);

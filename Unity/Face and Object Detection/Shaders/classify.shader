@@ -1,4 +1,4 @@
-﻿Shader "SVMFaceDetection/classify"
+﻿Shader "FaceAndObjectDetect/classify"
 {
     Properties
     {
@@ -30,12 +30,13 @@
 
             //RWStructuredBuffer<float4> buffer : register(u1);
 
-            #define outRes float2(24., 6.)
+            #define outRes _TexClassBuffer_TexelSize.zw
 
             Texture2D<float4> _TexKernel;
             Texture2D<float4> _TexAlphaInds;
             Texture2D<float4> _TexClassBuffer;
             float4 _TexAlphaInds_TexelSize;
+            float4 _TexClassBuffer_TexelSize;
             float _Dst;
             float rho;
 
@@ -65,16 +66,26 @@
                 return o;
             }
 
+            /*
+                The sum of all the kernel calculations on support vectors 
+                multiplied by the alpha constant
+
+                In:
+                    Index of the kernel output of one of the 64x64 test images.
+                Out:
+                    The total sum classified to 0 or 1. 
+            */
+
             float classify(uint px) {
                 double total = -rho;
                 // We use 1 pixel to store gamma and rho
-                const uint MAX = round(_TexAlphaInds_TexelSize.z) - 1;
+                const uint MAX = round(_TexAlphaInds_TexelSize.z);
                 for (uint i = 0; i < MAX; i++) {
-                    uint index = round(_TexAlphaInds.Load(uint3(i, 1, 0)).r);
-                    total += _TexAlphaInds.Load(uint3(i, 0, 0)).r * 
+                    uint index = round(_TexAlphaInds.Load(uint3(i, 0, 0)).r);
+                    total += _TexAlphaInds.Load(uint3(i, 1, 0)).r * 
                         _TexKernel.Load(uint3(index,px,0)).r;
                 }
-                return total > 0 ? 0 : 1;
+                return total > 0 ? 1 : 0;
             }
 
             float4 frag (v2f ps) : SV_Target
@@ -85,12 +96,12 @@
                 float4 col = _TexClassBuffer.Load(uint3(px, 0));
                 if (col.g > 0.0) {
                     // Update rate, lower frame slower updates
-                    col.g -= unity_DeltaTime.w * 0.003;
+                    col.g -= unity_DeltaTime.w * 0.0025;
                 }
                 else {
                     col.r = classify(px.x + px.y * 24);
                     //Wavey pattern
-                    col.g = 1.0 + 0.5*sin(ps.uv.x);
+                    col.g = 1.0 + 0.5*sin(ps.uv.x * -UNITY_PI);
                 }
 
                 return col;

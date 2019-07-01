@@ -1,15 +1,10 @@
-﻿/*
-    bins.shader
-    This layer does the sliding window operation on the three camera inputs 
-    and compresses the 64x64x1 pictures into 8x8x8 data structs.
-*/
-
-Shader "SVMFaceDetection/bins"
+﻿Shader "FaceAndObjectDetect/bins"
 {
 
     Properties
     {
-        _InputTex ("Input", 2D) = "black" {}
+        _TexOut ("bins", 2D) = "black" {}
+        _TexCTP ("cartToPolar", 2D) = "black" {}
         _Dst ("Distance Clip", Float) = 0.05
     }
 
@@ -34,11 +29,12 @@ Shader "SVMFaceDetection/bins"
 
             #include "UnityCG.cginc"
 
-            #define outRes float2(192., 48.)
-
+            #define outRes _TexOut_TexelSize.zw
             //RWStructuredBuffer<float4> buffer : register(u1);
             
-            Texture2D<float4> _InputTex;
+            Texture2D<float4> _TexOut;
+            Texture2D<float4> _TexCTP;
+            float4 _TexOut_TexelSize;
             float _Dst;
 
             struct appdata
@@ -67,6 +63,10 @@ Shader "SVMFaceDetection/bins"
             }
             
             /*
+                This layer does the sliding window operation and compresses 
+                the 64x64x1 pictures into 8x8x8 data structs containing 
+                magnitude sorted by direction.
+
                 Normally HOG descriptors have 9 bins, but to save
                 computation I wanted to shove it all into one pixel 
                 so I don't waste cycles doing the same thing.
@@ -88,7 +88,7 @@ Shader "SVMFaceDetection/bins"
                     [unroll]
                     for (; c.y < 8; c++) {
                         //.y = magnitude, .z = direction
-                        float2 data = _InputTex.Load(uint3(px + c, 0)).yz;
+                        float2 data = _TexCTP.Load(uint3(px + c, 0)).yz;
                         uint binNo = ((uint)(floor(data.y / 22.5))) % 8;
                         float ratio = fmod(data.x, 22.5) / 22.5;
                         bins[binNo] += data.x * (1.0 - ratio);

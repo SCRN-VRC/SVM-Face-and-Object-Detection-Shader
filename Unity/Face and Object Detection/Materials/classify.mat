@@ -78,6 +78,10 @@ Material:
         m_Texture: {fileID: 8400000, guid: 54a6f8eb272d61e44b1e55537e56a2c7, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TexOut:
+        m_Texture: {fileID: 8400000, guid: cea80262e552af341b8b90950b3b505b, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _TexSV:
         m_Texture: {fileID: 2800000, guid: 2f9fce94e7c91a041905b45b50ea2aca, type: 2}
         m_Scale: {x: 1, y: 1}

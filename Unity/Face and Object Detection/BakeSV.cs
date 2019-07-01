@@ -11,7 +11,6 @@ public class BakeSV : EditorWindow {
 
     string SavePath1 = "Assets/Face and Object Detection/Textures/SVM-SupportVecs.asset";
     string SavePath2 = "Assets/Face and Object Detection/Textures/SVM-AlphasIndex.asset";
-    string SavePath3 = "Assets/Face and Object Detection/Textures/LookupTable.asset";
     public TextAsset source;
 
     [MenuItem("Tools/SCRN/Bake Support Vectors")]
@@ -35,34 +34,6 @@ public class BakeSV : EditorWindow {
             else
                 OnGenerateTexture();
         }
-
-        GUILayout.Label("Dev Tools", EditorStyles.boldLabel);
-        if (GUILayout.Button("Generate 3D Index Lookup Table")) {
-            OnGenerateLookUpTable();
-        }
-    }
-
-    void OnGenerateLookUpTable() {
-        Texture2D lookup = new Texture2D(1568, 1, TextureFormat.RGBAFloat, false);
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 7; j++) {
-                for (int k = 0; k < 8; k++) {
-                    int ind1 = ((i * 2) * 14 + (j * 2)) * 8 + k;
-                    int ind2 = ((i * 2 + 1) * 14 + (j * 2)) * 8 + k;
-                    int ind3 = ((i * 2) * 14 + (j * 2 + 1)) * 8 + k;
-                    int ind4 = ((i * 2 + 1) * 14 + (j * 2 + 1)) * 8 + k;
-                    float fi = (float) i;
-                    float fj = (float) j;
-                    float fk = (float) k;
-                    lookup.SetPixel(ind1, 0, new Color(fi, fj, fk, 0.0f));
-                    lookup.SetPixel(ind2, 0, new Color(fi, fj, fk, 2.0f));
-                    lookup.SetPixel(ind3, 0, new Color(fi, fj, fk, 1.0f));
-                    lookup.SetPixel(ind4, 0, new Color(fi, fj, fk, 3.0f));
-                }
-            }
-        }
-        AssetDatabase.CreateAsset(lookup, SavePath3);
-        AssetDatabase.SaveAssets();
     }
 
     void OnGenerateTexture()
