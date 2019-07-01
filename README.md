@@ -53,17 +53,18 @@ Ignore this if you just want to do use the default detector. This is for people 
 
 6. Bake the data inside the .yaml file into an image by navigating to Tools -> SCRN -> Bake Support Vectors in Unity menus at the top
 7. Drop the .yaml file into the Text Asset box and hit **Bake!** After a few seconds it should create two .asset files inside ```Assets\Face and Object Detection\Textures``` folder
+8. Highlight both **SVM-AlphasIndex.asset** and **SVM-SupportVecs.asset**. Change the following: Wrap mode = Clamp, Filter mode = Point, Aniso Level = 0.
 
 <img src="https://i.imgur.com/AsDXJeX.png" align="center" width="3000" />
 
-8. Inside the Face_Object Detect.prefab, locate the materials called **Kernel** and **Classify** and place the new baked textures into the correct slots as shown in the picture above
+9. Inside the Face_Object Detect.prefab, locate the materials called **Kernel** and **Classify** and place the new baked textures into the correct slots as shown in the picture above
 
 <img src="https://i.imgur.com/YHg4oYD.png" align="center" width="3000" />
 
-9. Click on the .yaml file to view the text, look for a value after **sv_total**, this will be the new width of the kernel render texture.
-10. Inside ```Assets\Face and Object Detection\Textures\RenderTex``` select **kernel** and **kernel Buffer** render textures.
-11. Change the width of both render textures to **sv_total**
-12. Done!
+10. Click on the .yaml file to view the text, look for a value after **sv_total**, this will be the new width of the kernel render texture.
+11. Inside ```Assets\Face and Object Detection\Textures\RenderTex``` select **kernel** and **kernel Buffer** render textures.
+12. Change the width of both render textures to **sv_total**
+14. Done!
 
 ## Future Plans (Maybe)
 
