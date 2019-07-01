@@ -1,6 +1,33 @@
-# Face Recognition and Object Detection in Unity Cg
+<img src="https://i.imgur.com/G1Pnf8X.jpg" align="middle" width="3000"/>
 
-Code not 100% complete, WIP
+# Face Recognition and Object Detection for VRChat
+
+Implemented with a support vector machine (SVM) written in C++ and converted to HLSL to be used inside VRC on avatars. I have included a program that allows you to train your own detector and use it in game. Not only can you use it to detect faces, but other objects as well. **It's not very accurate**, I'll cover this in a later section below.
+
+## Overview
+<img src="SVM.png" align="middle" width="3000"/>
+
+A 160x90 camera input is convereted into black and white with the gradient extracted. A 64x64 sliding window is applied with a stride of 4 pixels. HOG features are extracted by binning by the magnitude of the gradient according to the direction of the gradient into 8 bins. The features are normalized to account for differences in lighting and stretched out into a bigger texture to reduce the number of conditional moves and texture reads. The radial basis function (RBF) kernel is applied to each of the 1568 features per 64x64 image block and the support vectors. At the end, classification is done by doing the summation of all RBF calculations per 64x64 image block.
+
+## Problems
+
+1. A lot of false positives, since the input is 160x90 we lose a lot of detail. The detector loves to pick up random noise as faces.
+2. The stride is too big, we lose a lot of detail.
+3. Cameras are friends only, you can only show this to your friends.
+4. SVMs needs to store data of the hyperplane that does the classification. So more training = more complex hyper plane = lag in game.
+
+## Unity and VRChat Setup
+
+1. Download the latest .unitypackage in Release
+2. Import into Unity
+3. Look in the Prefabs folder
+4. Put Face_Object Detect.prefab on your avatar
+5. If you want to see what it's doing, put Preview.prefab on your avatar
+6. Disable them by default and add a gesture to enable it.
+
+The default detector is trained to look for faces.
+
+## Training Setup
 
 OpenCV Setup
 C/C++ -> General Additional Include Directories
