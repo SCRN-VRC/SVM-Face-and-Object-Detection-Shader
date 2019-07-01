@@ -38,14 +38,16 @@ Ignore this if you just want to do use the default detector.
   - **Requirements**
     - [dirent.h](https://github.com/tronkko/dirent)
     - [OpenCV 4.0.1](https://opencv.org/releases/)
-2. Make sure the folders are setup the same as the following <img src="https://i.imgur.com/KDt9mzd.png" align="right" />
+<img src="https://i.imgur.com/KDt9mzd.png" align="right" />
+2. Make sure the folders are setup the same as the following
 3. Run VRC-SVM Train.exe and tell it the folder containing the Positive and Negative training folders using  ```-d```
   - Example:```"VRC-SVM Train.exe" -d="D:\GitHub\Face-and-Object-Detection-in-Unity-Cg\C++\Training Data\Faces"```
   - ```-auto``` will do k-fold cross validation on the training set. **Warning: It crashes a lot if you use** ```-auto```
 4. (Optional) To test a detector use ```-t``` and ```-fn``` to tell the program which detector you want to use.
   - Example:```"VRC-SVM Train.exe" -d="D:\GitHub\Face-and-Object-Detection-in-Unity-Cg\C++\Training Data\Faces" -t -fn="D:\GitHub\Face-and-Object-Detection-in-Unity-Cg\C++\out.yaml"```
 5. Once training is done, drag the .yaml file into Unity. If you didn't pick a name, the default name is out.yaml. This file is created in the same directory as the .exe
-6. Bake the data inside the .yaml file into an image by navigating to Tools -> SCRN -> Bake Support Vectors in Unity <img src="https://i.imgur.com/PPfXPXU.png" align="right" />
+<img src="https://i.imgur.com/PPfXPXU.png" align="right" />
+6. Bake the data inside the .yaml file into an image by navigating to Tools -> SCRN -> Bake Support Vectors in Unity
 <img src="https://i.imgur.com/L8K5zwg.png" align="left" />
 7. Inside the prefab you placed, locate the materials called **Kernel** and **Classify**
 
