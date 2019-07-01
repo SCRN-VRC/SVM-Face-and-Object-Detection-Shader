@@ -70,7 +70,7 @@ Ignore this if you just want to do use the default detector. This is for people 
 
 ## Future Plans (Maybe)
 
-Maybe use the depth buffer instead of RGB. Higher resolution, smaller stride, more detail.
+Maybe use the depth buffer instead of RGB. Higher resolution, smaller stride, variable sized windows for different distances.
 
 ## Contact
 
