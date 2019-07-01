@@ -39,6 +39,7 @@ Ignore this if you just want to do use the default detector. This is for people 
   - **Requirements**
     - [dirent.h](https://github.com/tronkko/dirent)
     - [OpenCV 4.0.1](https://opencv.org/releases/)
+
 *Either you download the Windows 64bit version or you'll have to compile the code yourself.*
 
 2. Make sure the folders are setup the same as the following. Parent folder containing only two folders
