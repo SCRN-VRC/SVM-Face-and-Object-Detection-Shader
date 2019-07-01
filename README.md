@@ -53,8 +53,8 @@ Ignore this if you just want to do use the default detector.
 
 6. Bake the data inside the .yaml file into an image by navigating to Tools -> SCRN -> Bake Support Vectors in Unity
 
-<img src="https://i.imgur.com/L8K5zwg.png" align="left" />
+<img src="https://i.imgur.com/AsDXJeX.png" align="center" width="3000" />
 
-7. Inside the prefab you placed, locate the materials called **Kernel** and **Classify**
+7. Inside the Face_Object Detect.prefab, locate the materials called **Kernel** and **Classify**
 
 Contact me on discord if you have any questions or suggestions: **SCRN#8008**
