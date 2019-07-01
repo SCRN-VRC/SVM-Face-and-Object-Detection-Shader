@@ -19,7 +19,7 @@ A 160x90 camera input is converted into black and white with the gradient extrac
 
 ## Unity and VRChat Setup
 
-1. Download the latest Face and Object Detection.unity in Release
+1. Download the latest Face and Object Detection.unity in [Release](https://github.com/SCRN-VRC/Face-and-Object-Detection-for-VRChat/releases)
 2. Import into Unity
 3. Look in the Prefabs folder
 4. Put Face_Object Detect.prefab on your avatar
@@ -33,7 +33,7 @@ The default detector is trained to look for faces.
 Ignore this if you just want to do use the default detector. This is for people who want to train their own SVM to detect other objects.
 
 #### Windows 10 64 bit machines
-1. Download the latest VRC-SVM Train.exe in Release
+1. Download the latest VRC-SVM Train.exe in [Release](https://github.com/SCRN-VRC/Face-and-Object-Detection-for-VRChat/releases)
 #### Anything else
 1. Compile the .cpp source code located in the C++ folder in this repo
   - **Requirements**
