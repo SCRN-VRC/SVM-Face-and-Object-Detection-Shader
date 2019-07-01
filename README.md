@@ -2,7 +2,7 @@
 
 # Face and Object Detection for VRChat
 
-Implemented with a support vector machine (SVM) written in C++ and converted to HLSL to be used inside VRC on avatars. I have included a program that allows you to train your own detector and use it in game. Not only can you use it to detect faces, but other objects as well. **It's not very accurate**, I'll cover this in a later section below.
+Implemented with a support vector machine (SVM) written in C++ and converted to HLSL to be used inside VRC on avatars. I have included a program that allows you to train your own detector and use it in game. Not only can you use it to detect faces, but other objects as well. **It's not very accurate in-game**, I'll cover this in a later section below.
 
 ## Overview
 <img src="SVM.png" align="middle" width="3000"/>
@@ -34,7 +34,7 @@ Ignore this if you just want to do use the default detector.
 #### Windows 10 64 bit machines
 1. Download the latest VRC-SVM Train.exe in Release
 #### Anything else
-1. Compile the .cpp source code
+1. Compile the .cpp source code located in the C++ folder in this repo
   - **Requirements**
     - [dirent.h](https://github.com/tronkko/dirent)
     - [OpenCV 4.0.1](https://opencv.org/releases/)
@@ -49,16 +49,20 @@ Ignore this if you just want to do use the default detector.
 5. Once training is done, drag the .yaml file into Unity. If you didn't pick a name, the default name is out.yaml. This file is created in the same directory as the .exe
 
 <img src="https://i.imgur.com/PPfXPXU.png" align="center" />
-
 6. Bake the data inside the .yaml file into an image by navigating to Tools -> SCRN -> Bake Support Vectors in Unity menus at the top
-7. Drop the .yaml file into the Text Asset box and hit **Bake!** After a few seconds it should create two .asset files inside ```Assets\Face and Object Detection\Textures folder.```
+7. Drop the .yaml file into the Text Asset box and hit **Bake!** After a few seconds it should create two .asset files inside ```Assets\Face and Object Detection\Textures``` folder
 
 <img src="https://i.imgur.com/AsDXJeX.png" align="center" width="3000" />
-
 8. Inside the Face_Object Detect.prefab, locate the materials called **Kernel** and **Classify** and place the new baked textures into the correct slots as shown in the picture above
 
-<img src="https://i.imgur.com/AsDXJeX.png" align="center" width="3000" />
-
+<img src="https://i.imgur.com/YHg4oYD.png" align="center" width="3000" />
 9. Click on the .yaml file to view the text, look for a value after **sv_total**, this will be the new width of the kernel render texture.
+10. Inside ```Assets\Face and Object Detection\Textures\RenderTex``` select **kernel** and **kernel Buffer** render textures.
+11. Change the width of both render textures to **sv_total**
+12. Done!
+
+## Future Plans (Maybe)
+Maybe use the depth buffer instead of RGB.
+Higher resolution, smaller stride, more detail.
 
 Contact me on Discord if you have any questions or suggestions: **SCRN#8008**
