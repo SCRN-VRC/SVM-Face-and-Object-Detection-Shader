@@ -39,6 +39,7 @@ Ignore this if you just want to do use the default detector.
     - [dirent.h](https://github.com/tronkko/dirent)
     - [OpenCV 4.0.1](https://opencv.org/releases/)
 2. Make sure the folders are setup the same as the following. Parent folder containing only two folders.
+
 <img src="https://i.imgur.com/KDt9mzd.png" align="center" />
 
 3. Run VRC-SVM Train.exe and tell it the folder containing the Positive and Negative training folders using  ```-d```
@@ -49,20 +50,25 @@ Ignore this if you just want to do use the default detector.
 5. Once training is done, drag the .yaml file into Unity. If you didn't pick a name, the default name is out.yaml. This file is created in the same directory as the .exe
 
 <img src="https://i.imgur.com/PPfXPXU.png" align="center" />
+
 6. Bake the data inside the .yaml file into an image by navigating to Tools -> SCRN -> Bake Support Vectors in Unity menus at the top
 7. Drop the .yaml file into the Text Asset box and hit **Bake!** After a few seconds it should create two .asset files inside ```Assets\Face and Object Detection\Textures``` folder
 
 <img src="https://i.imgur.com/AsDXJeX.png" align="center" width="3000" />
+
 8. Inside the Face_Object Detect.prefab, locate the materials called **Kernel** and **Classify** and place the new baked textures into the correct slots as shown in the picture above
 
 <img src="https://i.imgur.com/YHg4oYD.png" align="center" width="3000" />
+
 9. Click on the .yaml file to view the text, look for a value after **sv_total**, this will be the new width of the kernel render texture.
 10. Inside ```Assets\Face and Object Detection\Textures\RenderTex``` select **kernel** and **kernel Buffer** render textures.
 11. Change the width of both render textures to **sv_total**
 12. Done!
 
 ## Future Plans (Maybe)
-Maybe use the depth buffer instead of RGB.
-Higher resolution, smaller stride, more detail.
+
+Maybe use the depth buffer instead of RGB. Higher resolution, smaller stride, more detail.
+
+## Contact
 
 Contact me on Discord if you have any questions or suggestions: **SCRN#8008**
