@@ -78,3 +78,5 @@ Maybe use the depth buffer instead of RGB. Higher resolution, smaller stride, va
 ## Contact
 
 Contact me on Discord if you have any questions or suggestions: **SCRN#8008**
+
+Thanks to [Merlin](https://github.com/Merlin-san) and 1001 for making this possible.
