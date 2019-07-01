@@ -29,7 +29,7 @@ The default detector is trained to look for faces.
 
 ## Training Setup
 
-Ignore this if you just want to do use the default detector.
+Ignore this if you just want to do use the default detector. This is for people who want to train their own detectors that to detect other objects.
 
 #### Windows 10 64 bit machines
 1. Download the latest VRC-SVM Train.exe in Release
