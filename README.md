@@ -1,6 +1,6 @@
 [<img src="https://i.imgur.com/G1Pnf8X.jpg" align="middle" width="3000"/>](https://streamable.com/8q355)
 
-# Face Recognition and Object Detection for VRChat
+# Face and Object Detection for VRChat
 
 Implemented with a support vector machine (SVM) written in C++ and converted to HLSL to be used inside VRC on avatars. I have included a program that allows you to train your own detector and use it in game. Not only can you use it to detect faces, but other objects as well. **It's not very accurate**, I'll cover this in a later section below.
 
