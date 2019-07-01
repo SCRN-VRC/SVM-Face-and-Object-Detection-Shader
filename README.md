@@ -13,8 +13,9 @@ A 160x90 camera input is convereted into black and white with the gradient extra
 
 1. A lot of false positives, since the input is 160x90 we lose a lot of detail. The detector loves to pick up random noise as faces.
 2. The stride is too big, we lose a lot of detail.
-3. Cameras are friends only, you can only show this to your friends.
-4. SVMs needs to store data of the hyperplane that does the classification. So more training = more complex hyper plane = lag in game.
+3. Fixed distance. Since I'm only using a single 64x64 sliding window, I can't account for faces too close, or too far away.
+4. Cameras are friends only, you can only show this to your friends.
+5. SVMs needs to store data of the hyperplane that does the classification. So more training = more complex hyper plane = lag in game.
 
 ## Unity and VRChat Setup
 
@@ -38,33 +39,34 @@ Ignore this if you just want to do use the default detector. This is for people 
   - **Requirements**
     - [dirent.h](https://github.com/tronkko/dirent)
     - [OpenCV 4.0.1](https://opencv.org/releases/)
-2. Make sure the folders are setup the same as the following. Parent folder containing only two folders.
+2. Make sure the folders are setup the same as the following. Parent folder containing only two folders
+3. **Make sure all pictures are 64x64 pixels, no exceptions**
 
 <img src="https://i.imgur.com/KDt9mzd.png" align="center" />
 
-3. Run VRC-SVM Train.exe and tell it the folder containing the Positive and Negative training folders using  ```-d```
+4. Run VRC-SVM Train.exe and tell it the folder containing the Positive and Negative training folders using  ```-d```
   - *Example:*```"VRC-SVM Train.exe" -d="D:\GitHub\Face-and-Object-Detection-in-Unity-Cg\C++\Training Data\Faces"```
   - ```-auto``` will do k-fold cross validation on the training set. **Warning: It crashes a lot if you use** ```-auto```
-4. (Optional) To test a detector use ```-t``` and ```-fn``` to tell the program which detector you want to use.
+5. (Optional) To test a detector use ```-t``` and ```-fn``` to tell the program which detector you want to use.
   - *Example:*```"VRC-SVM Train.exe" -d="D:\GitHub\Face-and-Object-Detection-in-Unity-Cg\C++\Training Data\Faces" -t -fn="D:\GitHub\Face-and-Object-Detection-in-Unity-Cg\C++\out.yaml"```
-5. Once training is done, drag the .yaml file into Unity. If you didn't pick a name, the default name is out.yaml. This file is created in the same directory as the .exe
+6. Once training is done, drag the .yaml file into Unity. If you didn't pick a name, the default name is out.yaml. This file is created in the same directory as the .exe
 
 <img src="https://i.imgur.com/PPfXPXU.png" align="center" />
 
-6. Bake the data inside the .yaml file into an image by navigating to Tools -> SCRN -> Bake Support Vectors in Unity menus at the top
-7. Drop the .yaml file into the Text Asset box and hit **Bake!** After a few seconds it should create two .asset files inside ```Assets\Face and Object Detection\Textures``` folder
-8. Highlight both **SVM-AlphasIndex.asset** and **SVM-SupportVecs.asset**. Change the following: Wrap mode = Clamp, Filter mode = Point, Aniso Level = 0.
+7. Bake the data inside the .yaml file into an image by navigating to Tools -> SCRN -> Bake Support Vectors in Unity menus at the top
+8. Drop the .yaml file into the Text Asset box and hit **Bake!** After a few seconds it should create two .asset files inside ```Assets\Face and Object Detection\Textures``` folder
+9. Highlight both **SVM-AlphasIndex.asset** and **SVM-SupportVecs.asset**. Change the following: Wrap mode = Clamp, Filter mode = Point, Aniso Level = 0.
 
 <img src="https://i.imgur.com/AsDXJeX.png" align="center" width="3000" />
 
-9. Inside the Face_Object Detect.prefab, locate the materials called **Kernel** and **Classify** and place the new baked textures into the correct slots as shown in the picture above
+10. Inside the Face_Object Detect.prefab, locate the materials called **Kernel** and **Classify** and place the new baked textures into the correct slots as shown in the picture above
 
 <img src="https://i.imgur.com/YHg4oYD.png" align="center" width="3000" />
 
-10. Click on the .yaml file to view the text, look for a value after **sv_total**, this will be the new width of the kernel render texture.
-11. Inside ```Assets\Face and Object Detection\Textures\RenderTex``` select **kernel** and **kernel Buffer** render textures.
-12. Change the width of both render textures to **sv_total**
-14. Done!
+11. Click on the .yaml file to view the text, look for a value after **sv_total**, this will be the new width of the kernel render texture.
+12. Inside ```Assets\Face and Object Detection\Textures\RenderTex``` select **kernel** and **kernel Buffer** render textures.
+14. Change the width of both render textures to **sv_total**
+15. Done!
 
 ## Future Plans (Maybe)
 
