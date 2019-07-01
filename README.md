@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/G1Pnf8X.jpg" align="middle" width="3000"/>
+[<img src="https://i.imgur.com/G1Pnf8X.jpg" align="middle" width="3000"/>](https://streamable.com/8q355)
 
 # Face Recognition and Object Detection for VRChat
 
@@ -18,7 +18,7 @@ A 160x90 camera input is convereted into black and white with the gradient extra
 
 ## Unity and VRChat Setup
 
-1. Download the latest .unitypackage in Release
+1. Download the latest Face and Object Detection.unity in Release
 2. Import into Unity
 3. Look in the Prefabs folder
 4. Put Face_Object Detect.prefab on your avatar
@@ -28,19 +28,11 @@ A 160x90 camera input is convereted into black and white with the gradient extra
 The default detector is trained to look for faces.
 
 ## Training Setup
-
-OpenCV Setup
-C/C++ -> General Additional Include Directories
-D:\OpenCV 4.0.1\opencv\build\include
-
-Linker -> General -> Additional Library Directories
-$(OPENCV_DIR)\lib
-
-Linker -> Input -> Additional Dependencies
-opencv_world401d.lib;%(AdditionalDependencies)
-
-Environment Variables -> User Variables
-Make sure OPENCV_DIR points to install path
-
-Environment Variables -> Path
-%OPENCV_DIR%\bin
+#### Windows 10 64 bit machines
+1. Download the latest VRC-SVM Train.exe in Release
+#### Anything else
+1. Compile the .cpp source code
+  - **Requirements**
+    - [dirent.h](https://github.com/tronkko/dirent)
+    - [OpenCV 4.0.1](https://opencv.org/releases/)
+2. 
