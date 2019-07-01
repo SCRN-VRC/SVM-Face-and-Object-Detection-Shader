@@ -28,6 +28,9 @@ A 160x90 camera input is convereted into black and white with the gradient extra
 The default detector is trained to look for faces.
 
 ## Training Setup
+
+Ignore this if you just want to do use the default detector.
+
 #### Windows 10 64 bit machines
 1. Download the latest VRC-SVM Train.exe in Release
 #### Anything else
@@ -35,4 +38,11 @@ The default detector is trained to look for faces.
   - **Requirements**
     - [dirent.h](https://github.com/tronkko/dirent)
     - [OpenCV 4.0.1](https://opencv.org/releases/)
-2. 
+2. Make sure the folders are setup the same as the following
+<img src="https://i.imgur.com/KDt9mzd.png" align="right" />
+3. Run VRC-SVM Train.exe and tell it the folder containing the Positive and Negative training folders using  ```-d```
+  - Example:```"VRC-SVM Train.exe" -d="D:\GitHub\Face-and-Object-Detection-in-Unity-Cg\C++\Training Data\Faces"```
+  - ```-auto``` will do k-fold cross validation on the training set. **Warning: It crashes a lot if you use** ```-auto```
+4. (Optional) To test a detector use ```-t``` and ```-fn``` to tell the program which detector you want to use.
+
+Contact me on discord if you have any questions or suggestions: **SCRN#8008**
