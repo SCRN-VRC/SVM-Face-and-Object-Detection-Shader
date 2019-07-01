@@ -2,7 +2,7 @@
 
 # Face and Object Detection for VRChat
 
-A binary classifier implemented with a support vector machine (SVM) written in C++ and converted to HLSL to be used inside VRC. I have included a program that allows you to train your own detector. You can use it to detect other objects as well. **The face detection not very accurate in-game**, I'll cover this in a later section below.
+A binary classifier implemented with a support vector machine (SVM) written in C++ and converted to HLSL to be used inside VRC. I have included a program that allows you to train your own detector. You can use it to detect other objects as well. **The face detection is not very accurate in-game**, I'll cover this in a later section below.
 
 ## Overview
 <img src="SVM.png" align="middle" width="3000"/>
