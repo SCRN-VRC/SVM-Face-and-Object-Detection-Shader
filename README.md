@@ -38,10 +38,9 @@ Ignore this if you just want to do use the default detector.
   - **Requirements**
     - [dirent.h](https://github.com/tronkko/dirent)
     - [OpenCV 4.0.1](https://opencv.org/releases/)
-    
-<img src="https://i.imgur.com/KDt9mzd.png" align="right" />
+2. Make sure the folders are setup the same as the following. Parent folder containing only two folders.
+<img src="https://i.imgur.com/KDt9mzd.png" align="center" />
 
-2. Make sure the folders are setup the same as the following
 3. Run VRC-SVM Train.exe and tell it the folder containing the Positive and Negative training folders using  ```-d```
   - Example:```"VRC-SVM Train.exe" -d="D:\GitHub\Face-and-Object-Detection-in-Unity-Cg\C++\Training Data\Faces"```
   - ```-auto``` will do k-fold cross validation on the training set. **Warning: It crashes a lot if you use** ```-auto```
@@ -49,12 +48,17 @@ Ignore this if you just want to do use the default detector.
   - Example:```"VRC-SVM Train.exe" -d="D:\GitHub\Face-and-Object-Detection-in-Unity-Cg\C++\Training Data\Faces" -t -fn="D:\GitHub\Face-and-Object-Detection-in-Unity-Cg\C++\out.yaml"```
 5. Once training is done, drag the .yaml file into Unity. If you didn't pick a name, the default name is out.yaml. This file is created in the same directory as the .exe
 
-<img src="https://i.imgur.com/PPfXPXU.png" align="right" />
+<img src="https://i.imgur.com/PPfXPXU.png" align="center" />
 
-6. Bake the data inside the .yaml file into an image by navigating to Tools -> SCRN -> Bake Support Vectors in Unity
+6. Bake the data inside the .yaml file into an image by navigating to Tools -> SCRN -> Bake Support Vectors in Unity menus at the top
+7. Drop the .yaml file into the Text Asset box and hit **Bake!** After a few seconds it should create two .asset files inside ```Assets\Face and Object Detection\Textures folder.```
 
 <img src="https://i.imgur.com/AsDXJeX.png" align="center" width="3000" />
 
-7. Inside the Face_Object Detect.prefab, locate the materials called **Kernel** and **Classify**
+8. Inside the Face_Object Detect.prefab, locate the materials called **Kernel** and **Classify** and place the new baked textures into the correct slots as shown in the picture above
 
-Contact me on discord if you have any questions or suggestions: **SCRN#8008**
+<img src="https://i.imgur.com/AsDXJeX.png" align="center" width="3000" />
+
+9. Click on the .yaml file to view the text, look for a value after **sv_total**, this will be the new width of the kernel render texture.
+
+Contact me on Discord if you have any questions or suggestions: **SCRN#8008**
