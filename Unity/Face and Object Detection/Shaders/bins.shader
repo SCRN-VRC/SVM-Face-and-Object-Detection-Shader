@@ -105,11 +105,6 @@
                 buf1.x |= buf2.x; buf1.y |= buf2.y;
                 buf1.z |= buf2.z; buf1.w |= buf2.w;
 
-                // if (px.x == 20 && px.y == 20 && fmod(_Time.y, 1) < 0.1) {
-                //     float ex = f16tof32(buf1.x >> 16);
-                //     buffer[0] = float4(ex, bins[0], 0, 0);
-                // }
-
                 return buf1;
             }
 

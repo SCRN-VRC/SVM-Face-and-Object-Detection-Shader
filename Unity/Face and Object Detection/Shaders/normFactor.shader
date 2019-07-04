@@ -112,12 +112,12 @@
             {
                 clip(ps.uv.z);
                 uint2 px = round(ps.uv.xy * outRes);
+
                 float4 col = float4(0.,0.,0.,0.);
 
                 //160x90
                 uint2 targetPx = px + floor(px / 7);
                 col.rgba = blockNorm(targetPx).rrrr;
-
                 return col;
             }
             ENDCG

@@ -3,7 +3,6 @@
 
     Properties
     {
-        _TexOut ("cartToPolar", 2D) = "black" {}
         _TexCam ("L1 Camera", 2D) = "black" {}
         _TexBuff ("cartToPolar Buffer", 2D) = "black" {}
         _Dst ("Distance Clip", Float) = 0.05
@@ -30,13 +29,12 @@
 
             #include "UnityCG.cginc"
 
-            #define outRes _TexOut_TexelSize.zw
+            #define outRes _TexBuff_TexelSize.zw
             //RWStructuredBuffer<float4> buffer : register(u1);
 
-            Texture2D<float4> _TexOut;
             Texture2D<float4> _TexCam;
             Texture2D<float4> _TexBuff;
-            float4 _TexOut_TexelSize;
+            float4 _TexBuff_TexelSize;
             float _Dst;
 
             static const float3x3 fX = {
@@ -125,8 +123,8 @@
                 g.w = g.w < 0.0 ? g.w + 360.0 : g.w;
                 g.w = g.w > 180.0 ? g.w - 180.0 : g.w;
 
-                //if (g.z < 0)
-                //    buffer[0] = float4(g.z, g.w, 0, 0);
+                // if ( abs(g.w - 15.3831) < 0.1 )
+                //     buffer[0] = float4(g.z, g.w, 0, 0);
 
                 return g.zw;
             }
@@ -137,10 +135,14 @@
                 uint2 px = round(ps.uv.xy * outRes);
                 
                 float3 col = float3(0.,0.,0.);
-                float3 camTex = _TexCam.Load(uint3(px, 0));
+                // I don't know what to do anymore. I think this fixes the 
+                // stupid problem that OpenCV start 0,0 at the top left by 
+                // flipping the camera input upside down.
+                float3 camTex = _TexCam.Load(uint3(px.x, outRes.y - px.y, 0));
                 //col.r = 0.3333*camTex.r + 0.3334*camTex.g + 0.3333*camTex.b;
                 col.r = 0.2126*camTex.r + 0.7152*camTex.g + 0.0722*camTex.b;
                 col.gb = cartToPolar(px, uint2(0, 160), uint2(0, 90));
+
                 return float4(col, 1.0);
             }
 

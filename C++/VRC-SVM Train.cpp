@@ -146,11 +146,11 @@ void getHistArray(vector< Mat > & img_lst, float* features) {
 		{
 			for (int j = 0; j < image.cols; j++)
 			{
-				Vec3b color = image.at<Vec3b>(Point(i, j));
+				Vec3b color = image.at<Vec3b>(i, j);
 				float lin_r = (color[2] / 255.0);
 				float lin_g = (color[1] / 255.0);
 				float lin_b = (color[0] / 255.0);
-				imgLuma.at<float>(Point(i, j)) = 0.2126*lin_r + 0.7152*lin_g + 0.0722*lin_b;
+				imgLuma.at<float>(i, j) = 0.2126*lin_r + 0.7152*lin_g + 0.0722*lin_b;
 				//imgLuma.at<float>(i, j) = 0.3333*lin_r + 0.3334*lin_g + 0.3333*lin_b;
 			}
 		}
@@ -161,7 +161,7 @@ void getHistArray(vector< Mat > & img_lst, float* features) {
 		Mat mag = Mat::zeros(imgLuma.rows, imgLuma.cols, CV_32F);
 		Mat dir = Mat::zeros(imgLuma.rows, imgLuma.cols, CV_32F);
 
-		for (int i = imgLuma.rows - 1; i >= 0; i--)
+		for (int i = 0; i < imgLuma.rows; i++)
 		{
 			for (int j = 0; j < imgLuma.cols; j++)
 			{
@@ -294,7 +294,6 @@ void getHistArray(vector< Mat > & img_lst, float* features) {
 				}
 			}
 		}
-
 		//// HOGs (bins / normFactor) Layer
 		float4 hogs[14][14];
 		for (int i = 0; i < 14; i++) {

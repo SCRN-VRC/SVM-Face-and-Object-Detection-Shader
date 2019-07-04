@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 using System.Text.RegularExpressions;
+using UnityEngine.UI;
 
 [ExecuteInEditMode]
 public class BakeSV : EditorWindow {
@@ -12,6 +13,8 @@ public class BakeSV : EditorWindow {
     string SavePath1 = "Assets/Face and Object Detection/Textures/SVM-SupportVecs.asset";
     string SavePath2 = "Assets/Face and Object Detection/Textures/SVM-AlphasIndex.asset";
     public TextAsset source;
+    public RenderTexture imgSource;
+    public string imgText;
 
     [MenuItem("Tools/SCRN/Bake Support Vectors")]
     static void Init()
@@ -34,7 +37,24 @@ public class BakeSV : EditorWindow {
             else
                 OnGenerateTexture();
         }
+
+        // GUILayout.Label("Debugging", EditorStyles.boldLabel);
+        // imgSource = (RenderTexture) EditorGUILayout.ObjectField("RenderTex:", imgSource, typeof(RenderTexture), false);
+        // imgText = GUI.TextField(new Rect(10, 180, 380, 60), imgText);
+
+        // if (GUILayout.Button("Print!")) {
+
+        //     if (imgSource == null)
+        //         ShowNotification(new GUIContent("Select render texture"));
+        //     else
+        //         OnPrint();
+        // }
     }
+
+    // void OnPrint(){
+    //     Texture2D tex = new Texture2D(imgSource.width, imgSource.height, TextureFormat.RFloat, false);
+    //     tex.ReadPixels(new Rect(0, 0, imgSource.width, imgSource.height), 0, 0);
+    // }
 
     void OnGenerateTexture()
     {
