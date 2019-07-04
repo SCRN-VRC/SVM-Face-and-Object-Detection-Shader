@@ -80,7 +80,7 @@
                 double total = -rho;
                 // We use 1 pixel to store gamma and rho
                 const uint MAX = round(_TexAlphaInds_TexelSize.z);
-                for (uint i = 1; i <= MAX; i++) {
+                for (uint i = 1; i < MAX; i++) {
                     uint index = round(_TexAlphaInds.Load(uint3(i, 0, 0)).r);
                     total += _TexAlphaInds.Load(uint3(i, 1, 0)).r * 
                         _TexKernel.Load(uint3(index,px,0)).r;
