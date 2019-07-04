@@ -26,7 +26,7 @@ AnimationClip:
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
-        time: 0.016666668
+        time: 1802.9333
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -34,9 +34,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_IsActive
+    attribute: m_Enabled
     path: Luma and Gradient/cartToPolar/CTPCam
-    classID: 1
+    classID: 20
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
@@ -48,7 +48,7 @@ AnimationClip:
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
-        time: 0.016666668
+        time: 1802.9333
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -56,229 +56,229 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Binning/8x8x8 Bins/BinsCam
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Luma and Gradient/cartToPolar Buffer/CTPCam Buffer
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Data Precalc/Rearrange/RearrangeCam
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Normalization/normFactor/normFactorCam
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Classify Layer/ClassifyBuffer/ClassifyCam
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Normalization/HOGs/HOGsCam
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Data Precalc/Kernel Buffer/KernelBufferCam
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Classify Layer/Classify/ClassifyCam
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Cameras/LowRes
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Cameras/HighRes
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
+    attribute: m_Enabled
     path: Data Precalc/Kernel/KernelCam
-    classID: 1
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Binning/8x8x8 Bins/BinsCam
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Luma and Gradient/cartToPolar Buffer/CTPCam Buffer
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Data Precalc/Rearrange/RearrangeCam
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Normalization/normFactor/normFactorCam
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Classify Layer/ClassifyBuffer/ClassifyCam
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Normalization/HOGs/HOGsCam
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Data Precalc/Kernel Buffer/KernelBufferCam
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Classify Layer/Classify/ClassifyCam
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Cameras/LowRes
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Cameras/HighRes
+    classID: 20
     script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
@@ -290,86 +290,86 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 3068205448
-      attribute: 2086281974
+      attribute: 3305885265
       script: {fileID: 0}
-      typeID: 1
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2464714746
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 1825601285
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 408409481
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 82858352
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 627232182
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 644365272
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 3616326054
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2240828210
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 559421434
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2795209365
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
+      typeID: 20
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 4099614367
-      attribute: 2086281974
+      attribute: 3305885265
       script: {fileID: 0}
-      typeID: 1
+      typeID: 20
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2464714746
+      attribute: 3305885265
+      script: {fileID: 0}
+      typeID: 20
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1825601285
+      attribute: 3305885265
+      script: {fileID: 0}
+      typeID: 20
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 408409481
+      attribute: 3305885265
+      script: {fileID: 0}
+      typeID: 20
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 82858352
+      attribute: 3305885265
+      script: {fileID: 0}
+      typeID: 20
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 627232182
+      attribute: 3305885265
+      script: {fileID: 0}
+      typeID: 20
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 644365272
+      attribute: 3305885265
+      script: {fileID: 0}
+      typeID: 20
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3616326054
+      attribute: 3305885265
+      script: {fileID: 0}
+      typeID: 20
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2240828210
+      attribute: 3305885265
+      script: {fileID: 0}
+      typeID: 20
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 559421434
+      attribute: 3305885265
+      script: {fileID: 0}
+      typeID: 20
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2795209365
+      attribute: 3305885265
+      script: {fileID: 0}
+      typeID: 20
       customType: 0
       isPPtrCurve: 0
     pptrCurveMapping: []
@@ -378,7 +378,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.016666668
+    m_StopTime: 1802.9333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -404,7 +404,7 @@ AnimationClip:
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
-        time: 0.016666668
+        time: 1802.9333
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -412,9 +412,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_IsActive
+    attribute: m_Enabled
     path: Luma and Gradient/cartToPolar/CTPCam
-    classID: 1
+    classID: 20
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
@@ -426,7 +426,7 @@ AnimationClip:
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
-        time: 0.016666668
+        time: 1802.9333
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -434,229 +434,229 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Binning/8x8x8 Bins/BinsCam
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Luma and Gradient/cartToPolar Buffer/CTPCam Buffer
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Data Precalc/Rearrange/RearrangeCam
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Normalization/normFactor/normFactorCam
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Classify Layer/ClassifyBuffer/ClassifyCam
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Normalization/HOGs/HOGsCam
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Data Precalc/Kernel Buffer/KernelBufferCam
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Classify Layer/Classify/ClassifyCam
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Cameras/LowRes
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Cameras/HighRes
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      - serializedVersion: 2
-        time: 0.016666668
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
+    attribute: m_Enabled
     path: Data Precalc/Kernel/KernelCam
-    classID: 1
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Binning/8x8x8 Bins/BinsCam
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Luma and Gradient/cartToPolar Buffer/CTPCam Buffer
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Data Precalc/Rearrange/RearrangeCam
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Normalization/normFactor/normFactorCam
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Classify Layer/ClassifyBuffer/ClassifyCam
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Normalization/HOGs/HOGsCam
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Data Precalc/Kernel Buffer/KernelBufferCam
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Classify Layer/Classify/ClassifyCam
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Cameras/LowRes
+    classID: 20
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1802.9333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Cameras/HighRes
+    classID: 20
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
