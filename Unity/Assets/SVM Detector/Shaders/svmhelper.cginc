@@ -51,6 +51,26 @@ float test(uint3 pos, uint maxNum)
     return r;
 }
 
+void getFeature(inout float hogs[8], Texture2D<uint4> tex, uint2 iniPos,
+    uint2 offset, uint l)
+{
+    uint2 pos = offset * 14 + iniPos + uint2(l % 14, l / 14);
+    uint4 buf = tex.Load(uint3(pos, 0));
+    hogs[0] = f16tof32(buf[0] >> 16);
+    hogs[1] = f16tof32(buf[0]);
+    hogs[2] = f16tof32(buf[1] >> 16);
+    hogs[3] = f16tof32(buf[1]);
+    hogs[4] = f16tof32(buf[2] >> 16);
+    hogs[5] = f16tof32(buf[2]);
+    hogs[6] = f16tof32(buf[3] >> 16);
+    hogs[7] = f16tof32(buf[3]);
+}
+
+float getSV(Texture2D<float> tex, uint k, uint m)
+{
+    return tex.Load(uint3((k % 20) * 40 + m % 40, (k / 20) * 40 + m / 40, 0)).x;
+}
+
 inline bool insideArea(in uint4 area, uint2 px)
 {
     if (px.x >= area.x && px.x < (area.x + area.z) &&

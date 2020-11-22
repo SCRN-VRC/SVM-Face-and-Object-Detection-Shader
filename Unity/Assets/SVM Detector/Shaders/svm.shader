@@ -109,11 +109,11 @@
                     // stride
                     uint2 id = floor(i.uv.xy * g_size);
                     // apply sliding window on 480 x 270
-                    // float3 camCol = tex2D(_CamIn, id * w1_stride + grid * w1_size);
-                    // col.x = asuint(0.2126 * camCol.r + 0.7152 * camCol.g + 0.0722 * camCol.b);
-                    col.x = asuint(0.2126 * test(uint3(grid * 64, 0), 64) +
-                        0.7152 * test(uint3(grid * 64, 1), 64) +
-                        0.0722 * test(uint3(grid * 64, 2), 64));
+                    float3 camCol = tex2D(_CamIn, id * w1_stride + grid * w1_size);
+                    col.x = asuint(0.2126 * camCol.r + 0.7152 * camCol.g + 0.0722 * camCol.b);
+                    // col.x = asuint(0.2126 * test(uint3(grid * 64, 0), 64) +
+                    //     0.7152 * test(uint3(grid * 64, 1), 64) +
+                    //     0.0722 * test(uint3(grid * 64, 2), 64));
                 }
                 else if (lcFloor == 1 && insideArea(txCam2, px))
                 {
@@ -567,7 +567,37 @@
                 else if (lcFloor == 8 && insideArea(txPredict1, px))
                 {
                     px -= txPredict1.xy;
-                    col = asuint(1.0);
+                    float gamma = _SV.Load(uint3(798, 799, 0)).x;
+                    float rho = _SV.Load(uint3(799, 799, 0)).x;
+                    float dist[158];
+                    uint vidx[158];
+                    for (uint k = 0; k < 158; k++) {
+                        dist[k] = 0.0;
+                        // Load index
+                        vidx[k] = (uint)floor(_SV.Load(uint3(k, 798, 0)).x);
+                        for (uint l = 0; l < 196; l++) {
+                            // Extract HOG features from input
+                            float hogs[8];
+                            getFeature(hogs, _Buffer, txCam1Hog.xy, px, l);
+                            [unroll]
+                            for (uint m = 0; m < 8; m++) {
+                                float t0 = hogs[m] * getSV(_SV, k, l * 8 + m);
+                                dist[k] += t0 * t0;
+                            }
+                        }
+                        dist[k] = exp(dist[k] * -gamma);
+                    }
+
+                    float s = -rho;
+                    for (uint n = 0; n < 158; n++) {
+                        s += _SV.Load(uint3(n, 799, 0)).r * dist[vidx[n]];
+                    }
+                    col.r = asuint(s);
+
+                    if (px.x == 0 && px.y == 0)
+                    {
+                        buffer[0] = s;
+                    }
                 }
                 else if (lcFloor == 8 && insideArea(txPredict2, px))
                 {

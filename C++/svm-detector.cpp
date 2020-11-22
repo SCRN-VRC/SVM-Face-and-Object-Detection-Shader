@@ -305,16 +305,16 @@ void getHogs(vector<Mat> images, float** features)
 			}
 		}
 
-		for (int i = 0; i < 14; i++) {
-			for (int j = 0; j < 14; j++) {
-				std::clog << i << ", " << j << " ";
-				for (int k = 0; k < 8; k++) {
-					std::clog << hogs[i][j][k] << " ";
-				}
-				std::clog << std::endl;
-			}
-		}
-		std::clog << std::endl;
+		//for (int i = 0; i < 14; i++) {
+		//	for (int j = 0; j < 14; j++) {
+		//		std::clog << i << ", " << j << " ";
+		//		for (int k = 0; k < 8; k++) {
+		//			std::clog << hogs[i][j][k] << " ";
+		//		}
+		//		std::clog << std::endl;
+		//	}
+		//}
+		//std::clog << std::endl;
 
 		bool nan = false;
 		for (uint i = 0; i < 1568; i++) {
