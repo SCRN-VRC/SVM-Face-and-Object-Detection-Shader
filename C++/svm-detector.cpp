@@ -171,13 +171,13 @@ void getHogs(vector<Mat> images, float** features)
 		{
 			for (int j = 0; j < 64; j++)
 			{
-				//Vec3b color = img.at<Vec3b>(i, j);
-				//float lin_r = (color[2] / 255.0f);
-				//float lin_g = (color[1] / 255.0f);
-				//float lin_b = (color[0] / 255.0f);
-				float lin_r = test(i, j, 0, 64);
-				float lin_g = test(i, j, 1, 64);
-				float lin_b = test(i, j, 2, 64);
+				Vec3b color = img.at<Vec3b>(i, j);
+				float lin_r = (color[2] / 255.0f);
+				float lin_g = (color[1] / 255.0f);
+				float lin_b = (color[0] / 255.0f);
+				//float lin_r = test(i, j, 0, 64);
+				//float lin_g = test(i, j, 1, 64);
+				//float lin_b = test(i, j, 2, 64);
 				imgL[i][j] = 0.2126f*lin_r + 0.7152f*lin_g + 0.0722f*lin_b;
 			}
 		}
@@ -351,7 +351,7 @@ int main()
 	float **features;
 
 	// train
-	if (0)
+	if (1)
 	{
 		vector<Mat> img;
 		vector<int> imgC; // image class
@@ -362,6 +362,12 @@ int main()
 		{
 			Mat imgIn = imread(fn[i]);
 			if ((rand() % 2) == 0) flip(imgIn, imgIn, 1);
+
+			// Rotate for HLSL
+			cv::Point2f pc(imgIn.cols / 2., imgIn.rows / 2.);
+			cv::Mat r = cv::getRotationMatrix2D(pc, -90, 1.0);
+			cv::warpAffine(imgIn, imgIn, r, imgIn.size());
+
 			img.push_back(imgIn);
 			imgC.push_back(0); // Class 0
 		}
@@ -375,6 +381,12 @@ int main()
 		{
 			Mat imgIn = imread(fn[i]);
 			if ((rand() % 2) == 0) flip(imgIn, imgIn, 1);
+
+			// Rotate for HLSL
+			cv::Point2f pc(imgIn.cols / 2., imgIn.rows / 2.);
+			cv::Mat r = cv::getRotationMatrix2D(pc, -90, 1.0);
+			cv::warpAffine(imgIn, imgIn, r, imgIn.size());
+
 			img.push_back(imgIn);
 			imgC.push_back(1); // Class 1
 		}
@@ -406,6 +418,9 @@ int main()
 	{
 		Mat imgIn = imread(fn[i]);
 		if ((rand() % 2) == 0) flip(imgIn, imgIn, 1);
+		cv::Point2f pc(imgIn.cols / 2., imgIn.rows / 2.);
+		cv::Mat r = cv::getRotationMatrix2D(pc, -90, 1.0);
+		cv::warpAffine(imgIn, imgIn, r, imgIn.size());
 		img_t.push_back(imgIn);
 	}
 	std::clog << fn.size() << " images in " << tesdir << std::endl;
@@ -419,7 +434,8 @@ int main()
 
 	for (int i = 0; i < img_t.size(); i++)
 	{
-		std::clog << lout[i] << std::endl;
+		std::size_t found = fn[i].find_last_of("/\\");
+		std::clog << fn[i].substr(found + 1) << " " << lout[i] << std::endl;
 	}
 
 	free(lout);

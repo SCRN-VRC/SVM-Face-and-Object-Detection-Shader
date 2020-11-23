@@ -28,7 +28,7 @@
             #include "UnityCG.cginc"
             #include "svmhelper.cginc"
 
-            RWStructuredBuffer<float4> buffer : register(u1);
+            //RWStructuredBuffer<float4> buffer : register(u1);
             sampler2D _CamIn;
             Texture2D<uint4> _Buffer;
             Texture2D<float> _SV;
@@ -569,9 +569,9 @@
                     px -= txPredict1.xy;
                     float gamma = _SV.Load(uint3(798, 799, 0)).x;
                     float rho = _SV.Load(uint3(799, 799, 0)).x;
-                    float dist[158];
-                    uint vidx[158];
-                    for (uint k = 0; k < 158; k++) {
+                    float dist[SV_NUM];
+                    uint vidx[SV_NUM];
+                    for (uint k = 0; k < SV_NUM; k++) {
                         dist[k] = 0.0;
                         // Load index
                         vidx[k] = (uint)floor(_SV.Load(uint3(k, 798, 0)).x);
@@ -581,7 +581,7 @@
                             getFeature(hogs, _Buffer, txCam1Hog.xy, px, l);
                             [unroll]
                             for (uint m = 0; m < 8; m++) {
-                                float t0 = hogs[m] * getSV(_SV, k, l * 8 + m);
+                                float t0 = getSV(_SV, k, l * 8 + m) - hogs[m];
                                 dist[k] += t0 * t0;
                             }
                         }
@@ -589,28 +589,78 @@
                     }
 
                     float s = -rho;
-                    for (uint n = 0; n < 158; n++) {
+                    for (uint n = 0; n < SV_NUM; n++) {
                         s += _SV.Load(uint3(n, 799, 0)).r * dist[vidx[n]];
                     }
                     col.r = asuint(s);
 
-                    if (px.x == 0 && px.y == 0)
-                    {
-                        buffer[0] = s;
-                    }
+                    // if (px.x == 0 && px.y == 0)
+                    // {
+                    //     buffer[0] = s;
+                    // }
                 }
-                else if (lcFloor == 8 && insideArea(txPredict2, px))
+                else if (lcFloor == 9 && insideArea(txPredict2, px))
                 {
                     px -= txPredict2.xy;
-                    col = asuint(0.9);
+                    float gamma = _SV.Load(uint3(798, 799, 0)).x;
+                    float rho = _SV.Load(uint3(799, 799, 0)).x;
+                    float dist[SV_NUM];
+                    uint vidx[SV_NUM];
+                    for (uint k = 0; k < SV_NUM; k++) {
+                        dist[k] = 0.0;
+                        // Load index
+                        vidx[k] = (uint)floor(_SV.Load(uint3(k, 798, 0)).x);
+                        for (uint l = 0; l < 196; l++) {
+                            // Extract HOG features from input
+                            float hogs[8];
+                            getFeature(hogs, _Buffer, txCam2Hog.xy, px, l);
+                            [unroll]
+                            for (uint m = 0; m < 8; m++) {
+                                float t0 = getSV(_SV, k, l * 8 + m) - hogs[m];
+                                dist[k] += t0 * t0;
+                            }
+                        }
+                        dist[k] = exp(dist[k] * -gamma);
+                    }
+
+                    float s = -rho;
+                    for (uint n = 0; n < SV_NUM; n++) {
+                        s += _SV.Load(uint3(n, 799, 0)).r * dist[vidx[n]];
+                    }
+                    col.r = asuint(s);
                 }
-                else if (lcFloor == 8 && insideArea(txPredict3, px))
+                else if (lcFloor == 10 && insideArea(txPredict3, px))
                 {
                     px -= txPredict3.xy;
-                    col = asuint(0.8);
+                    float gamma = _SV.Load(uint3(798, 799, 0)).x;
+                    float rho = _SV.Load(uint3(799, 799, 0)).x;
+                    float dist[SV_NUM];
+                    uint vidx[SV_NUM];
+                    for (uint k = 0; k < SV_NUM; k++) {
+                        dist[k] = 0.0;
+                        // Load index
+                        vidx[k] = (uint)floor(_SV.Load(uint3(k, 798, 0)).x);
+                        for (uint l = 0; l < 196; l++) {
+                            // Extract HOG features from input
+                            float hogs[8];
+                            getFeature(hogs, _Buffer, txCam3Hog.xy, px, l);
+                            [unroll]
+                            for (uint m = 0; m < 8; m++) {
+                                float t0 = getSV(_SV, k, l * 8 + m) - hogs[m];
+                                dist[k] += t0 * t0;
+                            }
+                        }
+                        dist[k] = exp(dist[k] * -gamma);
+                    }
+
+                    float s = -rho;
+                    for (uint n = 0; n < SV_NUM; n++) {
+                        s += _SV.Load(uint3(n, 799, 0)).r * dist[vidx[n]];
+                    }
+                    col.r = asuint(s);
                 }
 
-                lc = fmod((lc + 1), 10);
+                lc = fmod((lc + 1), 20);
                 StoreValueFloat(txLC, lc, col, px);
                 StoreValueFloat(txTimer, timer, col, px);
                 return col;

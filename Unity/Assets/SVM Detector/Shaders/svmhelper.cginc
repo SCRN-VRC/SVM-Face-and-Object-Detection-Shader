@@ -1,6 +1,8 @@
 ﻿#ifndef _SVM_HELPER
 #define _SVM_HELPER
 
+#define SV_NUM                   133
+
 #define txCam1                   uint4(0, 0, 1728, 896)
 #define txCam2                   uint4(0, 896, 1088, 512)
 #define txCam3                   uint4(1088, 896, 64, 512)
@@ -37,24 +39,24 @@ static const float fY[3][3] =
      1,  2,  1
 };
 
-float test(uint3 pos, uint maxNum)
-{
-    float r;
-    if (pos.z == 0)
-        r = (pos.x / 64.0) * (pos.y /  64.0) * 2.0 - 1.0;
-    else if (pos.z == 1)
-        r = ((64.0 - pos.x) / 64.0) * (pos.y /  64.0) * 2.0 - 1.0;
-    else
-        r = (pos.x / 64.0) * ((64.0 - pos.y) /  64.0) * 2.0 - 1.0;
-    r = pos.x > maxNum ? 0.0 : r;
-    r = pos.y > maxNum ? 0.0 : r;
-    return r;
-}
+// float test(uint3 pos, uint maxNum)
+// {
+//     float r;
+//     if (pos.z == 0)
+//         r = (pos.x / 64.0) * (pos.y /  64.0) * 2.0 - 1.0;
+//     else if (pos.z == 1)
+//         r = ((64.0 - pos.x) / 64.0) * (pos.y /  64.0) * 2.0 - 1.0;
+//     else
+//         r = (pos.x / 64.0) * ((64.0 - pos.y) /  64.0) * 2.0 - 1.0;
+//     r = pos.x > maxNum ? 0.0 : r;
+//     r = pos.y > maxNum ? 0.0 : r;
+//     return r;
+// }
 
 void getFeature(inout float hogs[8], Texture2D<uint4> tex, uint2 iniPos,
     uint2 offset, uint l)
 {
-    uint2 pos = offset * 14 + iniPos + uint2(l % 14, l / 14);
+    uint2 pos = offset * 14 + iniPos + uint2(l / 14, l % 14);
     uint4 buf = tex.Load(uint3(pos, 0));
     hogs[0] = f16tof32(buf[0] >> 16);
     hogs[1] = f16tof32(buf[0]);
