@@ -5,6 +5,7 @@
         _CamIn ("Cam Input", 2D) = "white" {}
         _Buffer ("Buffer In", 2D) = "black" {}
         _SV ("Support Vectors", 2D) = "black" {}
+        _IdleTime ("Idle time (ms)", Range(5, 20)) = 9
         _MaxDist ("Max Distance", Float) = 0.05
     }
     SubShader
@@ -35,6 +36,7 @@
             float4 _CamIn_TexelSize;
             float4 _Buffer_TexelSize;
             float _MaxDist;
+            uint _IdleTime;
 
             // grid size
             static const float2 g_size = _Buffer_TexelSize.zw / 64.0;
@@ -660,7 +662,7 @@
                     col.r = asuint(s);
                 }
 
-                lc = fmod((lc + 1), 20);
+                lc = fmod((lc + 1), 11 + _IdleTime);
                 StoreValueFloat(txLC, lc, col, px);
                 StoreValueFloat(txTimer, timer, col, px);
                 return col;

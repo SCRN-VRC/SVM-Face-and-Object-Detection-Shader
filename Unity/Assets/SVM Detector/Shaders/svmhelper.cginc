@@ -1,7 +1,7 @@
 ﻿#ifndef _SVM_HELPER
 #define _SVM_HELPER
 
-#define SV_NUM                   133
+#define SV_NUM                   192
 
 #define txCam1                   uint4(0, 0, 1728, 896)
 #define txCam2                   uint4(0, 896, 1088, 512)

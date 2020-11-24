@@ -342,7 +342,7 @@ int main()
 	const String posdir = "D:\\Storage\\Datasets\\anime-face\\positive\\*.*";
 	const String negdir = "D:\\Storage\\Datasets\\anime-face\\negative\\*.*";
 	const String tesdir = "D:\\Storage\\Datasets\\anime-face\\test\\*.*";
-	const String fname = "svm-faces.xml";
+	const String fname = "svm-out.xml";
 
 	unsigned seed = chrono::system_clock::now().time_since_epoch().count();
 	srand(seed);
@@ -405,7 +405,7 @@ int main()
 
 		// train
 		std::clog << "Training..." << std::endl;
-		train(features, imgC, true, 2.5, 0.50625, 100, fname);
+		train(features, imgC, true, 2.5, 0.50625, 150, fname);
 
 		freeArray(img.size(), 1568, (void**)features);
 	}
