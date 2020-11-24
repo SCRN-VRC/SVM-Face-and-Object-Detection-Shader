@@ -31,7 +31,7 @@
                 float4 vertex : SV_POSITION;
             };
 
-            RWStructuredBuffer<float4> buffer : register(u1);
+            //RWStructuredBuffer<float4> buffer : register(u1);
             Texture2D<uint4> _Buffer;
             float4 _Buffer_TexelSize;
             float _Threshold;
@@ -164,8 +164,9 @@
                 float btop = 0.0;
                 [unroll]
                 for (i = 0; i < 7; i++) btop = max(btop, bins[i]);
-                btop += 1e-12;
-                
+                // squash the noise
+                btop = btop < 0.5 ? 999999.0 : btop;
+
                 const float ro = 0.5;
 
                 // bin 0

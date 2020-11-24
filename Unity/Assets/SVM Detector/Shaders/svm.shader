@@ -5,7 +5,7 @@
         _CamIn ("Cam Input", 2D) = "white" {}
         _Buffer ("Buffer In", 2D) = "black" {}
         _SV ("Support Vectors", 2D) = "black" {}
-        _IdleTime ("Idle time (ms)", Range(5, 20)) = 9
+        _IdleTime ("Idle time (ms)", Range(5, 20)) = 10
         _MaxDist ("Max Distance", Float) = 0.05
     }
     SubShader
@@ -91,7 +91,7 @@
 
                 //buffer[0].x = timer;
 
-                if (timer < 0.002)
+                if (timer < 0.003)
                 {
                     StoreValueFloat(txTimer, timer, col, px);
                     return col;
@@ -104,7 +104,7 @@
                 //buffer[0].y = lc;
 
                 // luminance
-                if (lcFloor == 1 && insideArea(txCam1, px))
+                if (lcFloor == 0 && insideArea(txCam1, px))
                 {
                     px -= txCam1.xy;
                     float2 grid = fmod(i.uv.xy * g_size, 1.0);
@@ -117,7 +117,7 @@
                     //     0.7152 * test(uint3(grid * 64, 1), 64) +
                     //     0.0722 * test(uint3(grid * 64, 2), 64));
                 }
-                else if (lcFloor == 1 && insideArea(txCam2, px))
+                else if (lcFloor == 0 && insideArea(txCam2, px))
                 {
                     px -= txCam2.xy;
                     float2 grid = fmod(i.uv.xy * g_size, 1.0);
@@ -127,7 +127,7 @@
                     float3 camCol = tex2D(_CamIn, id * w2_stride + grid * w2_size);
                     col.x = asuint(0.2126 * camCol.r + 0.7152 * camCol.g + 0.0722 * camCol.b);
                 }
-                else if (lcFloor == 1 && insideArea(txCam3, px))
+                else if (lcFloor == 0 && insideArea(txCam3, px))
                 {
                     px -= txCam3.xy;
                     float2 grid = fmod(i.uv.xy * g_size, 1.0);
@@ -138,7 +138,7 @@
                     col.x = asuint(0.2126 * camCol.r + 0.7152 * camCol.g + 0.0722 * camCol.b);
                 }
                 // edge detect x
-                else if (lcFloor == 2 && insideArea(txCam1, px))
+                else if (lcFloor == 1 && insideArea(txCam1, px))
                 {
                     px -= txCam1.xy;
                     px %= 64;
@@ -165,7 +165,7 @@
                         _10 * fX[1][0] + _12 * fX[1][2] +
                         _20 * fX[2][0] + _22 * fX[2][2]);
                 }
-                else if (lcFloor == 2 && insideArea(txCam2, px))
+                else if (lcFloor == 1 && insideArea(txCam2, px))
                 {
                     px -= txCam2.xy;
                     px %= 64;
@@ -192,7 +192,7 @@
                         _10 * fX[1][0] + _12 * fX[1][2] +
                         _20 * fX[2][0] + _22 * fX[2][2]);
                 }
-                else if (lcFloor == 2 && insideArea(txCam3, px))
+                else if (lcFloor == 1 && insideArea(txCam3, px))
                 {
                     px -= txCam3.xy;
                     px %= 64;
@@ -220,7 +220,7 @@
                         _20 * fX[2][0] + _22 * fX[2][2]);
                 }
                 // edge detect y
-                else if (lcFloor == 3 && insideArea(txCam1, px))
+                else if (lcFloor == 2 && insideArea(txCam1, px))
                 {
                     px -= txCam1.xy;
                     px %= 64;
@@ -250,7 +250,7 @@
                     //     buffer[0] = float4(ofs, x0, x2);
                     // }
                 }
-                else if (lcFloor == 3 && insideArea(txCam2, px))
+                else if (lcFloor == 2 && insideArea(txCam2, px))
                 {
                     px -= txCam2.xy;
                     px %= 64;
@@ -276,7 +276,7 @@
                     col.z = asuint(_00 * fY[0][0] + _01 * fY[0][1] + _02 * fY[0][2] +
                         _20 * fY[2][0] + _21 * fY[2][1] + _22 * fY[2][2]);
                 }
-                else if (lcFloor == 3 && insideArea(txCam3, px))
+                else if (lcFloor == 2 && insideArea(txCam3, px))
                 {
                     px -= txCam3.xy;
                     px %= 64;
@@ -303,7 +303,7 @@
                         _20 * fY[2][0] + _21 * fY[2][1] + _22 * fY[2][2]);
                 }
                 // magnitude and direction packed
-                else if (lcFloor == 4 && insideArea(txCam1, px))
+                else if (lcFloor == 3 && insideArea(txCam1, px))
                 {
                     px -= txCam1.xy;
                     float2 edges = asfloat(col.yz);
@@ -315,7 +315,7 @@
                     //     //buffer[0] = float4(edges, mag, dir * 180.0 / UNITY_PI + (dir < 0. ? 180. : 0.));
                     // }
                 }
-                else if (lcFloor == 4 && insideArea(txCam2, px))
+                else if (lcFloor == 3 && insideArea(txCam2, px))
                 {
                     px -= txCam2.xy;
                     float2 edges = asfloat(col.yz);
@@ -323,7 +323,7 @@
                     float dir = atan2(edges.y, edges.x);
                     col.w = f32tof16(mag) << 16 | f32tof16(dir);
                 }
-                else if (lcFloor == 4 && insideArea(txCam3, px))
+                else if (lcFloor == 3 && insideArea(txCam3, px))
                 {
                     px -= txCam3.xy;
                     float2 edges = asfloat(col.yz);
@@ -331,7 +331,7 @@
                     float dir = atan2(edges.y, edges.x);
                     col.w = f32tof16(mag) << 16 | f32tof16(dir);
                 }
-                else if (lcFloor == 5 && insideArea(txCam1Bin, px))
+                else if (lcFloor == 4 && insideArea(txCam1Bin, px))
                 {
                     px -= txCam1Bin.xy;
                     uint i = (px.y / 8) * 64 + (px.y % 8) * 8;
@@ -365,7 +365,7 @@
                     //     buffer[0] = float4(bins[0], bins[1], bins[2], bins[3]);
                     // }
                 }
-                else if (lcFloor == 6 && insideArea(txCam1Norm, px))
+                else if (lcFloor == 5 && insideArea(txCam1Norm, px))
                 {
                     px -= txCam1Norm.xy;
                     uint i = txCam1Bin.x + (px.x / 7) * 8 + px.x % 7;
@@ -384,7 +384,7 @@
                         s += f16tof32(buf4[x]) + f16tof32(buf4[x] >> 16);
                     }
 
-                    s += s < 1.0e-12 ? 1.0e-12 : 0.0;
+                    s = s < NOISE_THRESH ? 999999.0 : s;
                     col.r = asuint(s);
 
                     // if (px.x == 6 && px.y == 6)
@@ -392,7 +392,7 @@
                     //     buffer[0] = s;
                     // }
                 }
-                else if (lcFloor == 7 && insideArea(txCam1Hog, px))
+                else if (lcFloor == 6 && insideArea(txCam1Hog, px))
                 {
                     px -= txCam1Hog.xy;
                     uint i = px.y % 14;
@@ -420,7 +420,7 @@
                     //         f16tof32(col.w >> 16), f16tof32(col.w));
                     // }
                 }
-                else if (lcFloor == 5 && insideArea(txCam2Bin, px))
+                else if (lcFloor == 4 && insideArea(txCam2Bin, px))
                 {
                     px -= txCam2Bin.xy;
                     uint i = (px.y / 8) * 64 + (px.y % 8) * 8;
@@ -449,7 +449,7 @@
                     col.z = f32tof16(bins[4]) << 16 | f32tof16(bins[5]);
                     col.w = f32tof16(bins[6]) << 16 | f32tof16(bins[7]);
                 }
-                else if (lcFloor == 6 && insideArea(txCam2Norm, px))
+                else if (lcFloor == 5 && insideArea(txCam2Norm, px))
                 {
                     px -= txCam2Norm.xy;
                     uint i = txCam2Bin.x + (px.x / 7) * 8 + px.x % 7;
@@ -468,10 +468,10 @@
                         s += f16tof32(buf4[x]) + f16tof32(buf4[x] >> 16);
                     }
 
-                    s += s < 1.0e-12 ? 1.0e-12 : 0.0;
+                    s = s < NOISE_THRESH ? 999999.0 : s;
                     col.r = asuint(s);
                 }
-                else if (lcFloor == 7 && insideArea(txCam2Hog, px))
+                else if (lcFloor == 6 && insideArea(txCam2Hog, px))
                 {
                     px -= txCam2Hog.xy;
                     uint i = px.y % 14;
@@ -493,7 +493,7 @@
                         col[x] = f32tof16(fa) << 16 | f32tof16(fb);
                     }
                 }
-                else if (lcFloor == 5 && insideArea(txCam3Bin, px))
+                else if (lcFloor == 4 && insideArea(txCam3Bin, px))
                 {
                     px -= txCam3Bin.xy;
                     uint i = (px.x / 8) * 64 + (px.x % 8) * 8;
@@ -522,7 +522,7 @@
                     col.z = f32tof16(bins[4]) << 16 | f32tof16(bins[5]);
                     col.w = f32tof16(bins[6]) << 16 | f32tof16(bins[7]);
                 }
-                else if (lcFloor == 6 && insideArea(txCam3Norm, px))
+                else if (lcFloor == 5 && insideArea(txCam3Norm, px))
                 {
                     px -= txCam3Norm.xy;
                     uint i = txCam3Bin.x + (px.x / 7) * 8 + px.x % 7;
@@ -541,10 +541,10 @@
                         s += f16tof32(buf4[x]) + f16tof32(buf4[x] >> 16);
                     }
 
-                    s += s < 1.0e-12 ? 1.0e-12 : 0.0;
+                    s = s < NOISE_THRESH ? 999999.0 : s;
                     col.r = asuint(s);
                 }
-                else if (lcFloor == 7 && insideArea(txCam3Hog, px))
+                else if (lcFloor == 6 && insideArea(txCam3Hog, px))
                 {
                     px -= txCam3Hog.xy;
                     uint i = px.y % 14;
@@ -566,7 +566,7 @@
                         col[x] = f32tof16(fa) << 16 | f32tof16(fb);
                     }
                 }
-                else if (lcFloor == 8 && insideArea(txPredict1, px))
+                else if (lcFloor == 7 && insideArea(txPredict1, px))
                 {
                     px -= txPredict1.xy;
                     float gamma = _SV.Load(uint3(798, 799, 0)).x;
@@ -601,7 +601,7 @@
                     //     buffer[0] = s;
                     // }
                 }
-                else if (lcFloor == 9 && insideArea(txPredict2, px))
+                else if (lcFloor == 8 && insideArea(txPredict2, px))
                 {
                     px -= txPredict2.xy;
                     float gamma = _SV.Load(uint3(798, 799, 0)).x;
@@ -631,7 +631,7 @@
                     }
                     col.r = asuint(s);
                 }
-                else if (lcFloor == 10 && insideArea(txPredict3, px))
+                else if (lcFloor == 8 && insideArea(txPredict3, px))
                 {
                     px -= txPredict3.xy;
                     float gamma = _SV.Load(uint3(798, 799, 0)).x;
@@ -662,7 +662,7 @@
                     col.r = asuint(s);
                 }
 
-                lc = fmod((lc + 1), 11 + _IdleTime);
+                lc = fmod((lc + 1), 10 + _IdleTime);
                 StoreValueFloat(txLC, lc, col, px);
                 StoreValueFloat(txTimer, timer, col, px);
                 return col;
