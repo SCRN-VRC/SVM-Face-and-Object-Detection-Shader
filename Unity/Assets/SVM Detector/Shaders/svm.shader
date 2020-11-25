@@ -6,7 +6,7 @@
         _Buffer ("Buffer In", 2D) = "black" {}
         _SV ("Support Vectors", 2D) = "black" {}
         _IdleTime ("Idle time (ms)", Range(5, 20)) = 10
-        _MaxDist ("Max Distance", Float) = 0.05
+        _MaxDist ("Max Distance", Float) = 0.1
     }
     SubShader
     {
@@ -74,7 +74,8 @@
                 #endif
                 o.uv.xy = UnityStereoTransformScreenSpaceTex(v.uv);
                 o.uv.z = (distance(_WorldSpaceCameraPos,
-                    mul(unity_ObjectToWorld, float4(0,0,0,1)).xyz) > _MaxDist) ?
+                    mul(unity_ObjectToWorld, float4(0,0,0,1)).xyz) > _MaxDist ||
+                    !unity_OrthoParams.w) ?
                     -1 : 1;
                 return o;
             }
