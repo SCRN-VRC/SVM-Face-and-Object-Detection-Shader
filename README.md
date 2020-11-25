@@ -7,7 +7,11 @@ A binary classifier implemented with a support vector machine (SVM) written in C
 ## Overview
 <img src="/Images/SVM.png" align="middle" width="3000"/>
 
-My implementation has three camera inputs to detect varying sizes 480 x 270, 240 x 135, 120 x 67. A 64 x 64 sliding window is applied with a stride of 16 pixels for the largest camera inputs to 8 pixels for the smallest. HOG features are extracted by binning by the magnitude of the gradient according to the direction of the gradient into 8 bins. The features are normalized to account for differences in lighting. The radial basis function (RBF) kernel is applied to each of the 1568 features per 64 x 64 image block and the support vectors. At the end, classification is done by doing the summation of all RBF calculations per 64 x 64 image block.
+My implementation has three camera inputs to detect varying sizes 480 x 270, 240 x 135, 120 x 67. A 64 x 64 sliding window is applied with a stride of 16 pixels for the largest camera inputs to 8 pixels for the smallest.
+
+HOG features are extracted by binning by the magnitude of the gradient according to the direction of the gradient into 8 bins. The features are normalized to account for differences in lighting.
+
+The radial basis function (RBF) kernel is applied to each of the 1568 features per 64 x 64 image block and the support vectors. At the end, classification is done by doing the summation of all RBF calculations per 64 x 64 image block.
 
 ## Problems
 
