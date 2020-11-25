@@ -2,7 +2,7 @@
 
 # Face and Object Detection Shader
 
-A binary classifier implemented with a support vector machine (SVM) written in C++ and converted to HLSL to be used inside VRC. I have included a program that allows you to train your own detector. You can use it to detect other objects as well.
+A binary classifier implemented with a support vector machine (SVM) written in C++ and converted to HLSL to be used inside VRChat. I have included a program that allows you to train your own detector. You can use it to detect other objects as well.
 
 ## Overview
 <img src="/Images/SVM.png" align="middle" width="3000"/>
@@ -16,7 +16,7 @@ The radial basis function (RBF) kernel is applied to each of the 1568 features p
 ## Problems
 
 I have fixed most of the problems I listed in the previous implementation. However,
-1. Cameras are friends only, you can only show this to your friends.
+1. In VRChat, cameras are friends only, you can only show this to your friends.
 2. SVMs needs to store data of the hyperplane that does the classification. So more training = more complex hyper plane = lag in game.
 
 ## Setup
