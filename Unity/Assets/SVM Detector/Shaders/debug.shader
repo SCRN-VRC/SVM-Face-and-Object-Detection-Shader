@@ -43,8 +43,9 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                float4 col = saturate(_MainTex.Load(int3(i.uv.xy * _MainTex_TexelSize.zw, 0)));
-                return col;
+                uint4 col = _MainTex.Load(int3(i.uv.xy * _MainTex_TexelSize.zw, 0));
+                float4 fcol = i.uv.x < 0.84375 ? asfloat(col) : f16tof32(col);
+                return saturate(fcol);
             }
             ENDCG
         }

@@ -406,7 +406,7 @@ int main()
 
 		// train
 		std::clog << "Training..." << std::endl;
-		train(features, imgC, true, 2.5, 0.50625, 150, fname);
+		train(features, imgC, true, 2.5, 0.50625, 100, fname);
 
 		freeArray(img.size(), 1568, (void**)features);
 	}

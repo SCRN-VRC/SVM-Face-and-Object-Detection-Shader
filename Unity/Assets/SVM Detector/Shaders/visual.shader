@@ -172,54 +172,54 @@
                 // bin 0
                 float l = (bins[0] / btop) * 0.4;
                 float d = udSegment(p, float2(0.5 - l, 0.5), float2(0.5 + l, 0.5)) - 0.01;
-                col.rgb = lerp(col.rgb, float3(0.5, 1.0, 0.5), d < 0.01);
+                col.rgb = d < 0.01 ? float3(0.5, 1.0, 0.5) : col.rgb;
 
                 // bin 1
                 float2 pr = rot2(p - ro, 0.3927) + ro;
                 l = (bins[1] / btop) * 0.4;
                 d = udSegment(pr, float2(0.5 - l, 0.5), float2(0.5 + l, 0.5)) - 0.01;
-                col.rgb = lerp(col.rgb, float3(0.5, 1.0, 0.5), d < 0.01);
+                col.rgb = d < 0.01 ? float3(0.5, 1.0, 0.5) : col.rgb;
 
                 // bin 2
                 pr = rot2(p - ro, 0.7854) + ro;
                 l = (bins[2] / btop) * 0.4;
                 d = udSegment(pr, float2(0.5 - l, 0.5), float2(0.5 + l, 0.5)) - 0.01;
-                col.rgb = lerp(col.rgb, float3(0.5, 1.0, 0.5), d < 0.01);
+                col.rgb = d < 0.01 ? float3(0.5, 1.0, 0.5) : col.rgb;
 
                 // bin 3
                 pr = rot2(p - ro, 1.1781) + ro;
                 l = (bins[3] / btop) * 0.4;
                 d = udSegment(pr, float2(0.5 - l, 0.5), float2(0.5 + l, 0.5)) - 0.01;
-                col.rgb = lerp(col.rgb, float3(0.5, 1.0, 0.5), d < 0.01);
+                col.rgb = d < 0.01 ? float3(0.5, 1.0, 0.5) : col.rgb;
 
                 // bin 4
                 pr = rot2(p - ro, 1.5708) + ro;
                 l = (bins[4] / btop) * 0.4;
                 d = udSegment(pr, float2(0.5 - l, 0.5), float2(0.5 + l, 0.5)) - 0.01;
-                col.rgb = lerp(col.rgb, float3(0.5, 1.0, 0.5), d < 0.01);
+                col.rgb = d < 0.01 ? float3(0.5, 1.0, 0.5) : col.rgb;
 
                 // bin 5
                 pr = rot2(p - ro, 1.9635) + ro;
                 l = (bins[5] / btop) * 0.4;
                 d = udSegment(pr, float2(0.5 - l, 0.5), float2(0.5 + l, 0.5)) - 0.01;
-                col.rgb = lerp(col.rgb, float3(0.5, 1.0, 0.5), d < 0.01);
+                col.rgb = d < 0.01 ? float3(0.5, 1.0, 0.5) : col.rgb;
 
                 // bin 6
                 pr = rot2(p - ro, 2.3562) + ro;
                 l = (bins[6] / btop) * 0.4;
                 d = udSegment(pr, float2(0.5 - l, 0.5), float2(0.5 + l, 0.5)) - 0.01;
-                col.rgb = lerp(col.rgb, float3(0.5, 1.0, 0.5), d < 0.01);
+                col.rgb = d < 0.01 ? float3(0.5, 1.0, 0.5) : col.rgb;
 
                 // bin 7
                 pr = rot2(p - ro, 2.7489) + ro;
                 l = (bins[7] / btop) * 0.4;
                 d = udSegment(pr, float2(0.5 - l, 0.5), float2(0.5 + l, 0.5)) - 0.01;
-                col.rgb = lerp(col.rgb, float3(0.5, 1.0, 0.5), d < 0.01);
+                col.rgb = d < 0.01 ? float3(0.5, 1.0, 0.5) : col.rgb;
 
                 float2 p1 = abs(fmod(ps.uv * 128 + 1.0, 8.0) - 1.0);
                 float g1 = saturate(min(p1.x, p1.y) * 4);
 
-                col.rgb = lerp(float3(0.3, 0.3, 0.3), col.rgb, g1);
+                col.rgb = g1 > .9 ? col.rgb : float3(0.4, 0.4, 0.4);
                 col = saturate(col);
                 return col;
             }
