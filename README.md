@@ -53,4 +53,4 @@ These steps are only for the people who want to train their own detector.
 
 Contact me on Discord if you have any questions or suggestions: **SCRN#8008**
 
-Thanks to [Merlin](https://github.com/Merlin-san) and 1001 for making this possible.
+Thanks to [Merlin](https://github.com/MerlinVR) and 1001 for making this possible.
