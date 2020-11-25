@@ -40,7 +40,14 @@ These steps are only for the people who want to train their own detector.
 8. In the SVM prefab, find the game object called SVM place the new ```SupportVectors.asset``` into the Support Vectors texture slot.
 <img src="/Images/Replace.png">
 
-9. Done!
+9. Click on the ```svm-out.yaml``` file and look at the contents in the Inspector, remember the sv_total number.
+<img src="/Images/SVTotal.png">
+
+10. Locate ```svmhelper.cginc``` inside the Shaders folder.
+11. Change number after SV_NUM in ```svmhelper.cginc``` to the number you saw for sv_total inside ```svm-out.yaml```.
+<img src="/Images/ChangeNum.png">
+
+12. Done!
 
 ## Contact
 
