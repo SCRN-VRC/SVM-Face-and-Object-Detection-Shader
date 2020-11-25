@@ -338,12 +338,34 @@ void getHogs(vector<Mat> images, float** features)
 	}
 }
 
-int main()
+int main(int argc, char** argv)
 {
-	const String posdir = "D:\\Storage\\Datasets\\anime-face\\positive\\*.*";
-	const String negdir = "D:\\Storage\\Datasets\\anime-face\\negative\\*.*";
-	const String tesdir = "D:\\Storage\\Datasets\\anime-face\\test\\*.*";
-	const String fname = "svm-out.xml";
+	String posdir = "\\positive\\*.*";
+	String negdir = "\\negative\\*.*";
+	String tesdir = "\\test\\*.*";
+	String fname = "svm-out.xml";
+	int iterations = 100;
+
+	if (argc == 1)
+	{
+		std::clog << "Please enter a directory." << endl;
+		std::system("pause");
+		return 0;
+	}
+	else if (argc >= 2)
+	{
+		String argv1(argv[1]);
+		if ('\\' == argv1.back()) argv1.pop_back();
+
+		posdir.insert(0, argv1);
+		negdir.insert(0, argv1);
+		tesdir.insert(0, argv1);
+
+		if (argc >= 3)
+		{
+			iterations = stoi(argv[2]);
+		}
+	}
 
 	unsigned seed = chrono::system_clock::now().time_since_epoch().count();
 	srand(seed);
@@ -406,7 +428,7 @@ int main()
 
 		// train
 		std::clog << "Training..." << std::endl;
-		train(features, imgC, true, 2.5, 0.50625, 100, fname);
+		train(features, imgC, true, 2.5, 0.50625, iterations, fname);
 
 		freeArray(img.size(), 1568, (void**)features);
 	}

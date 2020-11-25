@@ -22,9 +22,17 @@ No prerequisites, either clone the repository or download the latest [Release](h
 ## Training
 
 These steps are only for the people who want to train their own detector.
-1. Get the svm-detector.exe in [Release](https://github.com/SCRN-VRC/SVM-Face-and-Object-Detection-Shader/releases) or compile it yourself. **The .exe only works with x64 bit machines**, compiling the C++ code requires OpenCV 4.0.1.
-2. Layout your training data like this
+1. Get the svm-detector.exe in [Release](https://github.com/SCRN-VRC/SVM-Face-and-Object-Detection-Shader/releases) or compile it yourself. **The .exe only works with x64 bit machines, anything else you'll have to compile it yourself. Compiling the C++ code requires OpenCV 4.0.1.**
+2. Layout your training data like this example for the Faces folder. **All pictures must be 64 x 64 in size.**
 <img src="/Images/Folders.png">
+3. Run svm-detector.exe with the path to the folder. For example, ```svm-detector.exe D:\Storage\Datasets\Faces 100``` will look for images in the Faces folder and train for 100 iterations.
+4. After the program finishes, it will output a ```svm-out.yaml``` file containing the support vectors for classification.
+5. To use it inside VRChat, drop the ```svm-out.yaml``` file into the Unity project with this repository.
+6. Navigate the menu Tool -> SCRN -> Bake Support Vectors, put in the .yaml file and hit Bake!
+<img src="/Images/Bake.png">
+7. After a few seconds there should be a new ```SupportVectors.asset``` file in the SVM Detector folder. If a ```SupportVectors.asset``` already exists, it will be overwritten.
+8. In the SVM prefab, find the game object called SVM place the new ```SupportVectors.asset``` into the Support Vectors texture slot.
+<img src="/Images/Replace.png">
 
 ## Contact
 
