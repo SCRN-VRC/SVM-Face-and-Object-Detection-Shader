@@ -15,7 +15,16 @@ I have fixed most of the problems I listed in the previous implementation. Howev
 1. Cameras are friends only, you can only show this to your friends.
 2. SVMs needs to store data of the hyperplane that does the classification. So more training = more complex hyper plane = lag in game.
 
-## Unity and VRChat Setup
+## Setup
+
+No prerequisites, either clone the repository or download the latest [Release](https://github.com/SCRN-VRC/SVM-Face-and-Object-Detection-Shader/releases) and open it in Unity
+
+## Training
+
+These steps are only for the people who want to train their own detector.
+1. Get the svm-detector.exe in [Release](https://github.com/SCRN-VRC/SVM-Face-and-Object-Detection-Shader/releases) or compile it yourself. **The .exe only works with x64 bit machines**, compiling the C++ code requires OpenCV 4.0.1.
+2. Layout your training data like this
+<img src="/Images/Folders.png">
 
 ## Contact
 
