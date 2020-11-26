@@ -1,4 +1,5 @@
 <img src="/Images/Project.png" align="middle" width="3000"/>
+<img src="/Images/Preview.gif" align="middle" width="3000"/>
 
 # Face and Object Detection Shader
 
