@@ -11,6 +11,10 @@
 #define txPredict2               uint4(2036, 0, 8, 17)
 #define txPredict3               uint4(2044, 0, 1, 8)
 
+#define txUnroll1                uint4(1152, 896, 672, 27)
+#define txUnroll2                uint4(1152, 923, 384, 17)
+#define txUnroll3                uint4(1152, 940, 48, 8)
+
 #define txCam1Bin                uint4(1840, 378, 112, 216)
 #define txCam1Norm               uint4(1924, 0, 98, 189)
 #define txCam1Hog                uint4(1728, 0, 196, 378)
