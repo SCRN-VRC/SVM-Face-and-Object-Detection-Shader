@@ -32,20 +32,20 @@ These steps are only for the people who want to train their own detector.
 <img src="/Images/Folders.png">
 
 3. Run svm-detector.exe with the path to the folder. For example, ```svm-detector.exe D:\Storage\Datasets\Faces 100``` will look for images in the Faces folder and train for 100 iterations.
-4. After the program finishes, it will output a ```svm-out.yaml``` file containing the support vectors for classification.
-5. To use it inside VRChat, drop the ```svm-out.yaml``` file into the Unity project with this repository.
-6. Navigate the menu Tool -> SCRN -> Bake Support Vectors, put in the .yaml file and hit Bake!
+4. After the program finishes, it will output a ```svm-out.xml``` file containing the support vectors for classification.
+5. To use it inside VRChat, drop the ```svm-out.xml``` file into the Unity project with this repository.
+6. Navigate the menu Tool -> SCRN -> Bake Support Vectors, put in the .xml file and hit Bake!
 <img src="/Images/Bake.png">
 
 7. After a few seconds there should be a new ```SupportVectors.asset``` file in the SVM Detector folder. If a ```SupportVectors.asset``` already exists, it will be overwritten.
 8. In the SVM prefab, find the game object called SVM place the new ```SupportVectors.asset``` into the Support Vectors texture slot.
 <img src="/Images/Replace.png">
 
-9. Click on the ```svm-out.yaml``` file and look at the contents in the Inspector, remember the sv_total number.
+9. Click on the ```svm-out.xml``` file and look at the contents in the Inspector, remember the sv_total number.
 <img src="/Images/SVTotal.png">
 
 10. Locate ```svmhelper.cginc``` inside the Shaders folder.
-11. Change number after SV_NUM in ```svmhelper.cginc``` to the number you saw for sv_total inside ```svm-out.yaml```.
+11. Change number after SV_NUM in ```svmhelper.cginc``` to the number you saw for sv_total inside ```svm-out.xml```.
 <img src="/Images/ChangeNum.png">
 
 12. Done!

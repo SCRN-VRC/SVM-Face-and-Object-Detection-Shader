@@ -5,7 +5,7 @@
         _CamIn ("Cam Input", 2D) = "white" {}
         _Buffer ("Buffer In", 2D) = "black" {}
         _SV ("Support Vectors", 2D) = "black" {}
-        _IdleTime ("Idle time (ms)", Range(5, 20)) = 10
+        _IdleTime ("Idle time (ms)", Range(0, 20)) = 0
         _MaxDist ("Max Distance", Float) = 0.1
     }
     SubShader
@@ -29,7 +29,7 @@
             #include "UnityCG.cginc"
             #include "svmhelper.cginc"
 
-            //RWStructuredBuffer<float4> buffer : register(u1);
+            RWStructuredBuffer<float4> buffer : register(u1);
             sampler2D _CamIn;
             Texture2D<uint4> _Buffer;
             Texture2D<float> _SV;
@@ -587,8 +587,8 @@
                             }
                         }
                         dist[k] = exp(dist[k] * -gamma);
+                        dist[k] = isnan(dist[k]) ? 0.01 : dist[k];
                     }
-
                     [unroll]
                     for (uint x = 0; x < 4; x++) {
                         col[x] = (f32tof16(dist[x * 2]) << 16) | f32tof16(dist[x * 2 + 1]);
@@ -615,6 +615,7 @@
                             }
                         }
                         dist[k] = exp(dist[k] * -gamma);
+                        dist[k] = isnan(dist[k]) ? 0.01 : dist[k];
                     }
 
                     [unroll]
@@ -641,6 +642,7 @@
                             }
                         }
                         dist[k] = exp(dist[k] * -gamma);
+                        dist[k] = isnan(dist[k]) ? 0.01 : dist[k];
                     }
 
                     [unroll]
@@ -669,8 +671,8 @@
                             dist[k] = f16tof32(_Buffer.Load(uint3(pos, 0))[2] >> s);
                         else
                             dist[k] = f16tof32(_Buffer.Load(uint3(pos, 0))[3] >> s);
+                        //dist[k] = isnan(dist[k]) ? 0.0 : dist[k];
                     }
-
                     float rho = _SV.Load(uint3(799, 799, 0)).x;
                     float s = -rho;
                     for (uint n = 0; n < SV_NUM; n++) {
@@ -699,6 +701,7 @@
                             dist[k] = f16tof32(_Buffer.Load(uint3(pos, 0))[2] >> s);
                         else
                             dist[k] = f16tof32(_Buffer.Load(uint3(pos, 0))[3] >> s);
+                        //dist[k] = isnan(dist[k]) ? 0.0 : dist[k];
                     }
 
                     float rho = _SV.Load(uint3(799, 799, 0)).x;
@@ -729,6 +732,7 @@
                             dist[k] = f16tof32(_Buffer.Load(uint3(pos, 0))[2] >> s);
                         else
                             dist[k] = f16tof32(_Buffer.Load(uint3(pos, 0))[3] >> s);
+                        //dist[k] = isnan(dist[k]) ? 0.0 : dist[k];
                     }
 
                     float rho = _SV.Load(uint3(799, 799, 0)).x;

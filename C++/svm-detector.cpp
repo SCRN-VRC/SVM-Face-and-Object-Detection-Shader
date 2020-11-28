@@ -282,7 +282,7 @@ void getHogs(vector<Mat> images, float** features)
 					sum[i][j] += bins[i + 1][j + 1][k];
 				}
 				// squash noise
-				sum[i][j] = sum[i][j] < 7.0f ? 999999.0f : sum[i][j];
+				sum[i][j] = sum[i][j] < 4.0f ? 999999.0f : sum[i][j];
 			}
 		}
 
