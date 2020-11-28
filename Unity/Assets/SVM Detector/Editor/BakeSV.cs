@@ -26,13 +26,13 @@ public class BakeSV : EditorWindow {
     {
         GUILayout.Label("Bake Support Vectors", EditorStyles.boldLabel);
         EditorGUILayout.BeginHorizontal();
-        source = (TextAsset) EditorGUILayout.ObjectField("SVM Output (.yaml):", source, typeof(TextAsset), false);
+        source = (TextAsset) EditorGUILayout.ObjectField("SVM Output (.xml):", source, typeof(TextAsset), false);
         EditorGUILayout.EndHorizontal();
 
         if (GUILayout.Button("Bake!")) {
            
             if (source == null)
-                ShowNotification(new GUIContent("Select the .yaml output file"));
+                ShowNotification(new GUIContent("Select the .xml output file"));
             else
                 OnGenerateTexture();
         }

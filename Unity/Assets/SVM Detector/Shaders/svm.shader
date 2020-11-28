@@ -414,12 +414,6 @@
                         float fb = f16tof32(b[x]) / s;
                         col[x] = f32tof16(fa) << 16 | f32tof16(fb);
                     }
-
-                    // if (px.x == 15 && px.y == 23)
-                    // {
-                    //     buffer[0] = float4(f16tof32(col.z >> 16), f16tof32(col.z),
-                    //         f16tof32(col.w >> 16), f16tof32(col.w));
-                    // }
                 }
                 else if (lcFloor == 4 && insideArea(txCam2Bin, px))
                 {
@@ -576,6 +570,7 @@
                     float gamma = _SV.Load(uint3(798, 799, 0)).x;
                     float dist[8];
                     for (uint k = 0; k < 8; k++) {
+                        dist[k] = 0.0;
                         for (uint l = 0; l < 196; l++) {
                             // Extract HOG features from input
                             float hogs[8];
@@ -587,7 +582,6 @@
                             }
                         }
                         dist[k] = exp(dist[k] * -gamma);
-                        dist[k] = isnan(dist[k]) ? 0.01 : dist[k];
                     }
                     [unroll]
                     for (uint x = 0; x < 4; x++) {
@@ -615,7 +609,6 @@
                             }
                         }
                         dist[k] = exp(dist[k] * -gamma);
-                        dist[k] = isnan(dist[k]) ? 0.01 : dist[k];
                     }
 
                     [unroll]
@@ -642,7 +635,6 @@
                             }
                         }
                         dist[k] = exp(dist[k] * -gamma);
-                        dist[k] = isnan(dist[k]) ? 0.01 : dist[k];
                     }
 
                     [unroll]
@@ -655,13 +647,15 @@
                     px -= txPredict1.xy;
                     uint vidx[SV_NUM];
                     float dist[SV_NUM];
+
                     for (uint k = 0; k < SV_NUM; k++) {
                         vidx[k] = (uint)floor(_SV.Load(uint3(k, 798, 0)).x);
                         // index
                         uint l = (k % 8) / 2;
                         // shift value
-                        uint s = (1 - ((k % 8) % 2)) * 16;
-                        uint2 pos = txUnroll1.xy + px + (k / 8) * uint2(14, 0);
+                        uint s = ((k % 8) % 2) == 0 ? 16 : 0;
+                        uint2 pos = txUnroll1.xy + px;
+                        pos.x += (k / 8) * 14;
                         // scoop up the unrolled values
                         if (l == 0)
                             dist[k] = f16tof32(_Buffer.Load(uint3(pos, 0))[0] >> s);
@@ -671,7 +665,6 @@
                             dist[k] = f16tof32(_Buffer.Load(uint3(pos, 0))[2] >> s);
                         else
                             dist[k] = f16tof32(_Buffer.Load(uint3(pos, 0))[3] >> s);
-                        //dist[k] = isnan(dist[k]) ? 0.0 : dist[k];
                     }
                     float rho = _SV.Load(uint3(799, 799, 0)).x;
                     float s = -rho;
@@ -685,13 +678,15 @@
                     px -= txPredict2.xy;
                     uint vidx[SV_NUM];
                     float dist[SV_NUM];
+
                     for (uint k = 0; k < SV_NUM; k++) {
                         vidx[k] = (uint)floor(_SV.Load(uint3(k, 798, 0)).x);
                         // index
                         uint l = (k % 8) / 2;
                         // shift value
-                        uint s = (1 - ((k % 8) % 2)) * 16;
-                        uint2 pos = txUnroll2.xy + px + (k / 8) * uint2(8, 0);
+                        uint s = ((k % 8) % 2) == 0 ? 16 : 0;
+                        uint2 pos = txUnroll2.xy + px;
+                        pos.x += (k / 8) * 8;
                         // scoop up the unrolled values
                         if (l == 0)
                             dist[k] = f16tof32(_Buffer.Load(uint3(pos, 0))[0] >> s);
@@ -701,7 +696,6 @@
                             dist[k] = f16tof32(_Buffer.Load(uint3(pos, 0))[2] >> s);
                         else
                             dist[k] = f16tof32(_Buffer.Load(uint3(pos, 0))[3] >> s);
-                        //dist[k] = isnan(dist[k]) ? 0.0 : dist[k];
                     }
 
                     float rho = _SV.Load(uint3(799, 799, 0)).x;
@@ -716,13 +710,15 @@
                     px -= txPredict3.xy;
                     uint vidx[SV_NUM];
                     float dist[SV_NUM];
+
                     for (uint k = 0; k < SV_NUM; k++) {
                         vidx[k] = (uint)floor(_SV.Load(uint3(k, 798, 0)).x);
                         // index
                         uint l = (k % 8) / 2;
                         // shift value
-                        uint s = (1 - ((k % 8) % 2)) * 16;
-                        uint2 pos = txUnroll3.xy + px + (k / 8) * uint2(1, 0);
+                        uint s = ((k % 8) % 2) == 0 ? 16 : 0;
+                        uint2 pos = txUnroll3.xy + px;
+                        pos.x += (k / 8);
                         // scoop up the unrolled values
                         if (l == 0)
                             dist[k] = f16tof32(_Buffer.Load(uint3(pos, 0))[0] >> s);
@@ -732,7 +728,6 @@
                             dist[k] = f16tof32(_Buffer.Load(uint3(pos, 0))[2] >> s);
                         else
                             dist[k] = f16tof32(_Buffer.Load(uint3(pos, 0))[3] >> s);
-                        //dist[k] = isnan(dist[k]) ? 0.0 : dist[k];
                     }
 
                     float rho = _SV.Load(uint3(799, 799, 0)).x;

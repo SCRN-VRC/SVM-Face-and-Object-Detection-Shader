@@ -1,7 +1,7 @@
 ﻿#ifndef _SVM_HELPER
 #define _SVM_HELPER
 
-#define SV_NUM                   303
+#define SV_NUM                   350
 #define NOISE_THRESH             4.0
 
 #define txCam1                   uint4(0, 0, 1728, 896)

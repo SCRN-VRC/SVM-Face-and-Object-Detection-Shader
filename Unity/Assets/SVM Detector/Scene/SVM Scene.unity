@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   launchedFromSDKPipeline: 0
-  completedSDKPipeline: 0
+  completedSDKPipeline: 1
   blueprintId: 
   contentType: 0
   assetBundleUnityVersion: 
