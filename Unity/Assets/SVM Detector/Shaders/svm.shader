@@ -29,7 +29,7 @@
             #include "UnityCG.cginc"
             #include "svmhelper.cginc"
 
-            RWStructuredBuffer<float4> buffer : register(u1);
+            //RWStructuredBuffer<float4> buffer : register(u1);
             sampler2D _CamIn;
             Texture2D<uint4> _Buffer;
             Texture2D<float> _SV;
