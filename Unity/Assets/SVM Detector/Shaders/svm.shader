@@ -29,7 +29,7 @@
             #include "UnityCG.cginc"
             #include "svmhelper.cginc"
 
-            //RWStructuredBuffer<float4> buffer : register(u1);
+            // RWStructuredBuffer<float4> buffer : register(u1);
             sampler2D _CamIn;
             Texture2D<uint4> _Buffer;
             Texture2D<float> _SV;
@@ -92,7 +92,7 @@
 
                 //buffer[0].x = timer;
 
-                if (timer < 0.003)
+                if (timer < 0.004)
                 {
                     StoreValueFloat(txTimer, timer, col, px);
                     return col;
@@ -137,6 +137,9 @@
                     // apply sliding window on 120 x 67
                     float3 camCol = tex2D(_CamIn, id.yx * w3_stride + grid * w3_size);
                     col.x = asuint(0.2126 * camCol.r + 0.7152 * camCol.g + 0.0722 * camCol.b);
+                    // col.x = asuint(0.2126 * test(uint3(grid * 64, 0), 64) +
+                    //     0.7152 * test(uint3(grid * 64, 1), 64) +
+                    //     0.0722 * test(uint3(grid * 64, 2), 64));
                 }
                 // edge detect x
                 else if (lcFloor == 1 && insideArea(txCam1, px))
@@ -542,8 +545,8 @@
                 else if (lcFloor == 6 && insideArea(txCam3Hog, px))
                 {
                     px -= txCam3Hog.xy;
-                    uint i = px.y % 14;
-                    uint j = px.x % 14;
+                    uint i = px.x % 14;
+                    uint j = px.y % 14;
                     uint si = (i / 2);
                     uint sj = (j / 2);
                     uint bi = si + (i % 2);
@@ -620,6 +623,7 @@
                 {
                     px -= txUnroll3.xy;
                     uint j = px.x;
+
                     float gamma = _SV.Load(uint3(798, 799, 0)).x;
                     float dist[8];
                     for (uint k = 0; k < 8; k++) {
